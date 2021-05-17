@@ -1,7 +1,10 @@
-// custom typefaces
-import "typeface-montserrat"
-import "typeface-merriweather"
-// normalize CSS across browsers
-import "./src/normalize.css"
-// custom CSS styles
-import "./src/style.css"
+const React = require("react")
+const Layout = require("./src/components/layout").default
+const GlobalStyles = require("./src/styles/index").GlobalStyles
+
+exports.wrapRootElement = ({ element }) => (
+  <>
+    <GlobalStyles />
+    <Layout>{element}</Layout>
+  </>
+)

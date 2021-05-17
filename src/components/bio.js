@@ -24,7 +24,6 @@ const Bio = () => {
   `)
 
   const avatarUrl = author?.avatar?.url
-
   return (
     <div className="bio">
       {avatarUrl && (

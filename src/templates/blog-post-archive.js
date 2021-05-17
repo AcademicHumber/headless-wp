@@ -1,10 +1,11 @@
 import React from "react"
 import { Link, graphql } from "gatsby"
-import parse from "html-react-parser"
-
 import Bio from "../components/bio"
-import Layout from "../components/layout"
 import SEO from "../components/seo"
+import Header from "../components/Header/header"
+import { StyledMainContentContainer } from "../styles/components"
+import PostCard from "../components/postCard"
+import { Typography } from "@material-ui/core"
 
 const BlogIndex = ({
   data,
@@ -14,48 +15,37 @@ const BlogIndex = ({
 
   if (!posts.length) {
     return (
-      <Layout isHomePage>
+      <>
+        <Header>Hola</Header>
         <SEO title="All posts" />
         <Bio />
         <p>
           No blog posts found. Add posts to your WordPress site and they'll
           appear here!
         </p>
-      </Layout>
+      </>
     )
   }
 
   return (
-    <Layout isHomePage>
-      <SEO title="All posts" />
+    <>
+      <Header>
+        <section className="hero">
+          <Typography variant="h1" color="textPrimary">
+            Encuentra las últimas noticias de tecnología{" "}
+          </Typography>
+          <Typography variant="caption"> Home - Blog</Typography>
+        </section>
+      </Header>
+      <SEO title="Todas las publicaciones" />
 
-      <Bio />
-
-      <ol style={{ listStyle: `none` }}>
-        {posts.map(post => {
-          const title = post.title
-
-          return (
-            <li key={post.uri}>
-              <article
-                className="post-list-item"
-                itemScope
-                itemType="http://schema.org/Article"
-              >
-                <header>
-                  <h2>
-                    <Link to={post.uri} itemProp="url">
-                      <span itemProp="headline">{parse(title)}</span>
-                    </Link>
-                  </h2>
-                  <small>{post.date}</small>
-                </header>
-                <section itemProp="description">{parse(post.excerpt)}</section>
-              </article>
-            </li>
-          )
-        })}
-      </ol>
+      <StyledMainContentContainer>
+        <section className="container">
+          {posts.map(post => {
+            return <PostCard key={post.uri} post={post} />
+          })}
+        </section>
+      </StyledMainContentContainer>
 
       {previousPagePath && (
         <>
@@ -64,7 +54,7 @@ const BlogIndex = ({
         </>
       )}
       {nextPagePath && <Link to={nextPagePath}>Next page</Link>}
-    </Layout>
+    </>
   )
 }
 
@@ -82,7 +72,18 @@ export const pageQuery = graphql`
         uri
         date(formatString: "MMMM DD, YYYY")
         title
-        excerpt
+        featuredImage {
+          node {
+            altText
+            localFile {
+              childImageSharp {
+                fluid(maxHeight: 350, quality: 100) {
+                  ...GatsbyImageSharpFluid_tracedSVG
+                }
+              }
+            }
+          }
+        }
       }
     }
   }

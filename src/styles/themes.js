@@ -12,6 +12,9 @@ export const lawyersTheme = createMuiTheme({
       primary: "#47536b",
       secondary: "#9ca9c4",
     },
+    alternative: {
+      main: "#2b354f",
+    },
   },
 
   typography: {

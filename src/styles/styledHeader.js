@@ -1,5 +1,5 @@
 import styled from "styled-components"
-import { above, globals } from "./index"
+import { above } from "./index"
 
 export const StyledSocials = styled.section`
   grid-column: 1 / -1;
@@ -16,9 +16,15 @@ export const StyledHeader = styled.header.attrs(props => ({
   grid-column: 1 / -1;
   grid-row: 2 / 3;
   z-index: 3;
+  background: ${props => props.background};
+  background-repeat: no-repeat;
+  background-position: bottom;
+
+  /* Spacing */
+
+  padding-top: 2.5rem;
 
   & .navigation-items {
-    background: ${props => props.background};
     // Grid box
     display: grid;
     grid-template-columns: 1fr 2fr 1fr;
@@ -33,13 +39,12 @@ export const StyledHeader = styled.header.attrs(props => ({
   }
 
   .hero {
-    background: ${props => props.background};
     padding: 20vh 10vw;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    border-radius: 0 0 50% 50%;
+    border-radius: 0 0 30% 30%;
   }
 
   ${above.medium`
@@ -68,5 +73,9 @@ export const StyledMenu = styled.section`
   .menu-item {
     display: flex;
     align-items: center;
+  }
+
+  @media (max-width: 600px) {
+    display: none;
   }
 `

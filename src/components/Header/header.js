@@ -1,12 +1,11 @@
 import React from "react"
 import parse from "html-react-parser"
-import { StyledHeader, StyledSocials } from "../../styles/styledHeader"
+import { StyledHeader } from "../../styles/styledHeader"
 import { Link, useStaticQuery, graphql } from "gatsby"
 import { Toolbar, Typography } from "@material-ui/core"
 import NavBar from "./navBar"
-import SearchBar from "./searchBar"
 
-export default function Header({ children }) {
+export default function Header({ children, background }) {
   const {
     wp: {
       generalSettings: { title },
@@ -24,7 +23,7 @@ export default function Header({ children }) {
 
   return (
     <>
-      <StyledHeader>
+      <StyledHeader background={`url(${background})`}>
         <Toolbar component="section" className="navigation-items">
           <section className="site-logo">
             <Link to="/">
@@ -34,7 +33,6 @@ export default function Header({ children }) {
             </Link>
           </section>
           <NavBar />
-          <SearchBar />
         </Toolbar>
 
         {children}

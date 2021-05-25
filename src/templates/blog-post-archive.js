@@ -3,9 +3,12 @@ import { Link, graphql } from "gatsby"
 import Bio from "../components/bio"
 import SEO from "../components/seo"
 import Header from "../components/Header/header"
+import Footer from "../components/Footer/footer"
 import { StyledMainContentContainer } from "../styles/components"
 import PostCard from "../components/postCard"
 import { Typography } from "@material-ui/core"
+import NewsLetter from "../components/NewsLetter/newsletter"
+import heroBackground from "../../content/assets/fondo-hero.png"
 
 const BlogIndex = ({
   data,
@@ -29,7 +32,7 @@ const BlogIndex = ({
 
   return (
     <>
-      <Header>
+      <Header background={heroBackground}>
         <section className="hero">
           <Typography variant="h1" color="textPrimary">
             Encuentra las últimas noticias de tecnología{" "}
@@ -38,7 +41,6 @@ const BlogIndex = ({
         </section>
       </Header>
       <SEO title="Todas las publicaciones" />
-
       <StyledMainContentContainer>
         <section className="container">
           {posts.map(post => {
@@ -46,7 +48,6 @@ const BlogIndex = ({
           })}
         </section>
       </StyledMainContentContainer>
-
       {previousPagePath && (
         <>
           <Link to={previousPagePath}>Previous page</Link>
@@ -54,6 +55,8 @@ const BlogIndex = ({
         </>
       )}
       {nextPagePath && <Link to={nextPagePath}>Next page</Link>}
+      <NewsLetter />
+      <Footer />
     </>
   )
 }

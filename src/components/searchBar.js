@@ -2,7 +2,7 @@ import React from "react"
 import InputBase from "@material-ui/core/InputBase"
 import SearchIcon from "@material-ui/icons/Search"
 import styled from "styled-components"
-import { above, globals } from "../../styles/index"
+import { above, globals } from "../styles/index"
 
 const StyledSearchBar = styled.div`
   border-radius: ${globals.borderRadius};
@@ -22,7 +22,7 @@ const StyledSearchBar = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
-    color: white;
+    color: black;
   }
 
   .MuiInputBase-input {

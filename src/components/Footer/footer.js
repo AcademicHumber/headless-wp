@@ -1,11 +1,10 @@
 import React from "react"
-import LastPosts from "../widgets/lastPosts"
+import LastPosts from "../widgets/LastPosts/lastPosts"
 import { Link, useStaticQuery, graphql } from "gatsby"
 import { StyledFooter } from "../../styles/styledFooter"
 import { useTheme } from "@material-ui/core/styles"
 import { Typography } from "@material-ui/core"
 import { AccessTime, LocationOn, Phone } from "@material-ui/icons"
-import NewsletterForm from "../NewsLetter/newsletterForm"
 import FooterNewsletter from "../NewsLetter/footerNewsletter"
 
 export default function Footer() {
@@ -16,6 +15,9 @@ export default function Footer() {
     about:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis. ",
     placeholder: "Tu correo",
+    beforeSuscriptionForm:
+      "Recibe asesoría gratuita de la mejor firma de abogados",
+    copyright: "© 2021 Abundia S.R.L. Todos los derechos reservados.",
   }
 
   const theme = useTheme()
@@ -81,12 +83,28 @@ export default function Footer() {
           <LastPosts quantity="2" />
         </div>
         {/* Fourth Column */}
-        <div className="last-posts">
+        <div className="footer-subscriptions">
           <Typography variant="h4" color="textSecondary">
             Suscripción
           </Typography>
-          <FooterNewsletter Texts={Texts} />
+          <div className="subscription-form">
+            <Typography variant="body2" color="textSecondary">
+              {Texts.beforeSuscriptionForm}
+            </Typography>
+            <FooterNewsletter Texts={Texts} />
+          </div>
         </div>
+      </section>
+      <section className="copyright">
+        <Typography variant="body2" color="textSecondary">
+          {Texts.copyright}
+        </Typography>
+        &nbsp;
+        <Link to="/blog">
+          <Typography variant="body2" color="textSecondary">
+            Terminos de privacidad.
+          </Typography>
+        </Link>
       </section>
     </StyledFooter>
   )

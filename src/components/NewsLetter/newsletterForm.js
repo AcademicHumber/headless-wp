@@ -11,10 +11,14 @@ const formError = false
 
 export default function NewsletterForm({ Texts }) {
   return (
-    <form>
+    <form action="get">
       <FormControl variant="outlined" error={formError}>
         <InputLabel htmlFor="email-input">{Texts.placeholder}</InputLabel>
-        <OutlinedInput id="email-input" label={Texts.placeholder} />
+        <OutlinedInput
+          id="email-input"
+          label={Texts.placeholder}
+          name="email"
+        />
         {formError && <FormHelperText id="email-input">Error</FormHelperText>}
       </FormControl>
       <StyledButton variant="contained" color="primary">

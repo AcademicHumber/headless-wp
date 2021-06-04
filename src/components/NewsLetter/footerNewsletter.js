@@ -1,20 +1,32 @@
 import React from "react"
 /**Form Imports */
-import FormControl from "@material-ui/core/FormControl"
-import InputLabel from "@material-ui/core/InputLabel"
-import OutlinedInput from "@material-ui/core/OutlinedInput"
+import Paper from "@material-ui/core/Paper"
+import IconButton from "@material-ui/core/IconButton"
+import SendIcon from "@material-ui/icons/Send"
 import FormHelperText from "@material-ui/core/FormHelperText"
+import InputBase from "@material-ui/core/InputBase"
 
 const formError = false
 
 export default function FooterNewsletter({ Texts }) {
   return (
-    <form>
-      <FormControl variant="outlined" error={formError}>
-        <InputLabel htmlFor="email-input">{Texts.placeholder}</InputLabel>
-        <OutlinedInput id="email-input" label={Texts.placeholder} />
-        {formError && <FormHelperText id="email-input">Error</FormHelperText>}
-      </FormControl>
-    </form>
+    <>
+      <Paper component="form" className="subscription_form">
+        <InputBase
+          className="footer-email"
+          placeholder={Texts.placeholder}
+          inputProps={{ "aria-label": Texts.placeholder, name: "email" }}
+          error={formError}
+        />
+
+        <IconButton
+          type="submit"
+          className="subscription-send"
+          aria-label="Send"
+        >
+          <SendIcon color="primary" />
+        </IconButton>
+      </Paper>
+    </>
   )
 }

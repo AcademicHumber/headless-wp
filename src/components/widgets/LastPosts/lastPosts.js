@@ -2,7 +2,7 @@ import React from "react"
 import styled from "styled-components"
 import { graphql, useStaticQuery } from "gatsby"
 import _ from "lodash"
-import PostItem from "./LastPosts/postItem"
+import PostItem from "./postItem"
 
 export default function LastPosts({ quantity }) {
   const {
@@ -49,7 +49,7 @@ const StyledWidget = styled.section`
   & .widget-post-item {
     display: grid;
     grid-template-columns: 1fr 2fr;
-    grid-template-rows: 1fr 0.5fr;
+    grid-template-rows: 1fr 0.2fr;
 
     .post_item_image {
       grid-column: 1/2;
@@ -58,6 +58,7 @@ const StyledWidget = styled.section`
 
       .gatsby-image-wrapper {
         border-radius: 1.5rem;
+        box-shadow: 0px 1px 3px 2px rgba(0, 0, 0, 0.3);
       }
     }
 
@@ -67,6 +68,10 @@ const StyledWidget = styled.section`
       h6 {
         font-size: 1.4rem;
       }
+    }
+
+    &:hover {
+      opacity: 0.9;
     }
   }
 `

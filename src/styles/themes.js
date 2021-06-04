@@ -4,16 +4,15 @@ export const lawyersTheme = createMuiTheme({
   palette: {
     primary: {
       main: "#3377ff",
+      dark: "#2b354f",
     },
     secondary: {
+      light: "#fffff",
       main: "#9ca9c4",
     },
     text: {
       primary: "#47536b",
       secondary: "#9ca9c4",
-    },
-    alternative: {
-      main: "#2b354f",
     },
   },
 

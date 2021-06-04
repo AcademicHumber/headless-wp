@@ -19,7 +19,7 @@ export default function NewsLetter() {
     <>
       <StyledNewsLetter background={`url(${heroBackground})`}>
         <div className="newsletter--container">
-          <Typography variant="h1" color="textPrimary">
+          <Typography variant="h2" color="textPrimary">
             {Texts.title}
           </Typography>
 

@@ -35,7 +35,7 @@ const BlogIndex = ({
       <Header background={heroBackground}>
         <section className="hero">
           <Typography variant="h1" color="textPrimary">
-            Encuentra las últimas noticias de tecnología{" "}
+            Encuentra las últimas noticias
           </Typography>
           <Typography variant="caption"> Home - Blog</Typography>
         </section>
@@ -46,15 +46,15 @@ const BlogIndex = ({
           {posts.map(post => {
             return <PostCard key={post.uri} post={post} />
           })}
+          {previousPagePath && (
+            <>
+              <Link to={previousPagePath}>Previous page</Link>
+              <br />
+            </>
+          )}
+          {nextPagePath && <Link to={nextPagePath}>Next page</Link>}
         </section>
       </StyledMainContentContainer>
-      {previousPagePath && (
-        <>
-          <Link to={previousPagePath}>Previous page</Link>
-          <br />
-        </>
-      )}
-      {nextPagePath && <Link to={nextPagePath}>Next page</Link>}
       <NewsLetter />
       <Footer />
     </>

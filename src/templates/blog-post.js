@@ -2,6 +2,7 @@ import React from "react"
 import { Link, graphql } from "gatsby"
 import Image from "gatsby-image"
 import parse from "html-react-parser"
+import heroBackground from "../../content/assets/fondo-hero.png"
 
 // We're using Gutenberg so we need the block styles
 import "@wordpress/block-library/build-style/style.css"
@@ -9,6 +10,10 @@ import "@wordpress/block-library/build-style/theme.css"
 import Bio from "../components/bio"
 import SEO from "../components/seo"
 import Header from "../components/Header/header"
+import { Typography } from "@material-ui/core"
+import { StyledMainSingleContentContainer } from "../styles/components"
+import NewsLetter from "../components/NewsLetter/newsletter"
+import Footer from "../components/Footer/footer"
 
 const BlogPostTemplate = ({ data: { previous, next, post } }) => {
   const featuredImage = {
@@ -18,67 +23,87 @@ const BlogPostTemplate = ({ data: { previous, next, post } }) => {
 
   return (
     <>
-      <Header></Header>
+      <Header background={heroBackground}>
+        <section className="hero">
+          <Typography variant="h1" color="textPrimary">
+            Encuentra las últimas noticias
+          </Typography>
+          <Typography variant="caption"> Home → {parse(post.title)}</Typography>
+        </section>
+      </Header>
       <SEO title={post.title} description={post.excerpt} />
-
-      <article
-        className="blog-post"
-        itemScope
-        itemType="http://schema.org/Article"
-      >
-        <header>
-          <h1 itemProp="headline">{parse(post.title)}</h1>
-
-          <p>{post.date}</p>
-
-          {/* if we have a featured image for this post let's display it */}
-          {featuredImage?.fluid && (
-            <Image
-              fluid={featuredImage.fluid}
-              alt={featuredImage.alt}
-              style={{ marginBottom: 50 }}
-            />
-          )}
-        </header>
-
-        {!!post.content && (
-          <section itemProp="articleBody">{parse(post.content)}</section>
-        )}
-
-        <hr />
-
-        <footer>
-          <Bio />
-        </footer>
-      </article>
-
-      <nav className="blog-post-nav">
-        <ul
-          style={{
-            display: `flex`,
-            flexWrap: `wrap`,
-            justifyContent: `space-between`,
-            listStyle: `none`,
-            padding: 0,
-          }}
-        >
-          <li>
-            {previous && (
-              <Link to={previous.uri} rel="prev">
-                ← {parse(previous.title)}
-              </Link>
+      <StyledMainSingleContentContainer>
+        <section className="container">
+          <article
+            className="blog-post"
+            itemScope
+            itemType="http://schema.org/Article"
+          >
+            {/* if we have a featured image for this post let's display it */}
+            {featuredImage?.fluid && (
+              <Image
+                fluid={featuredImage.fluid}
+                alt={featuredImage.alt}
+                className="post-image"
+              />
             )}
-          </li>
+            <Typography
+              variant="caption"
+              color="textSecondary"
+              className="post-date"
+            >
+              {post.date}
+            </Typography>
+            <Typography variant="h2" color="textPrimary" className="post-title">
+              {parse(post.title)}
+            </Typography>
 
-          <li>
-            {next && (
-              <Link to={next.uri} rel="next">
-                {parse(next.title)} →
-              </Link>
+            <section className="author">
+              <Bio />
+            </section>
+            {!!post.content && (
+              <Typography
+                variant="body1"
+                color="textPrimary"
+                className="post-content"
+              >
+                {parse(post.content)}
+              </Typography>
             )}
-          </li>
-        </ul>
-      </nav>
+
+            <hr />
+          </article>
+          <nav className="blog-post-nav">
+            <ul
+              style={{
+                display: `flex`,
+                flexWrap: `wrap`,
+                justifyContent: `space-between`,
+                listStyle: `none`,
+                padding: 0,
+              }}
+            >
+              <li>
+                {previous && (
+                  <Link to={previous.uri} rel="prev">
+                    ← {parse(previous.title)}
+                  </Link>
+                )}
+              </li>
+
+              <li>
+                {next && (
+                  <Link to={next.uri} rel="next">
+                    {parse(next.title)} →
+                  </Link>
+                )}
+              </li>
+            </ul>
+          </nav>
+        </section>
+      </StyledMainSingleContentContainer>
+      <NewsLetter />
+      <Footer />
     </>
   )
 }
@@ -98,7 +123,7 @@ export const pageQuery = graphql`
       excerpt
       content
       title
-      date(formatString: "MMMM DD, YYYY")
+      date(formatString: "DD MMMM, YYYY")
 
       featuredImage {
         node {

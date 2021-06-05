@@ -59,7 +59,7 @@ module.exports = {
         short_name: `Suscription`,
         start_url: `/`,
         background_color: `#ffffff`,
-        theme_color: `#663399`,
+        theme_color: `#3377ff`,
         display: `minimal-ui`,
         icon: `content/assets/gatsby-icon.png`,
       },

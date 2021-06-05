@@ -4,20 +4,22 @@ export const StyledFooter = styled.footer.attrs(props => ({
   background: props.background || "#ccc",
 }))`
   background: ${props => props.background};
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr minmax(300px, 1170px) 1fr;
   justify-content: center;
   flex-wrap: wrap;
   border-bottom: 1px solid ${props => props.background};
 
   // Positioning
   & .footer-container {
+    grid-column: 2/3;
     display: grid;
-    grid-template-columns: repeat(4, minmax(292.5px, 1fr));
-    max-width: 1170px;
-    padding: 10rem 0 0;
-    gap: 1.5rem;
-    flex-basis: 100%;
+    grid-template-columns: repeat(auto-fill, 285px);
     flex-wrap: wrap;
+    padding: 6rem 0 0;
+    gap: 1rem;
+    flex-basis: 100%;
+    justify-content: center;
 
     & h4 {
       font-weight: bold;
@@ -33,11 +35,17 @@ export const StyledFooter = styled.footer.attrs(props => ({
     }
 
     .site-info {
-      grid-column: 1/2;
+      & .open-hours,
+      .location,
+      .phone {
+        margin-bottom: 0.5rem;
+      }
+      p {
+        display: inline-block;
+      }
     }
-    .about-info {
-      grid-column: 2/3;
 
+    .about-info {
       .about-text {
         padding-right: 2rem;
       }
@@ -60,12 +68,12 @@ export const StyledFooter = styled.footer.attrs(props => ({
   }
 
   & .copyright {
+    grid-column: 2/3;
     flex-basis: 100%;
     display: flex;
     justify-content: center;
     padding: 1rem 0;
     border-top: 1px solid #666;
-    max-width: 130rem;
 
     a {
       text-decoration: underline;

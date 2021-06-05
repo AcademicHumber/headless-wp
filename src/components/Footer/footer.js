@@ -47,19 +47,19 @@ export default function Footer() {
           </Typography>
           <div className="open-hours">
             <AccessTime color="secondary" />
-            <Typography variant="p" color="textSecondary">
+            <Typography variant="body2" color="textSecondary">
               {Texts.openHours}
             </Typography>
           </div>
           <div className="location">
             <LocationOn color="secondary" />
-            <Typography variant="p" color="textSecondary">
+            <Typography variant="body2" color="textSecondary">
               {Texts.location}
             </Typography>
           </div>
           <div className="phone">
             <Phone color="secondary" />
-            <Typography variant="p" color="textSecondary">
+            <Typography variant="body2" color="textSecondary">
               {Texts.phone}
             </Typography>
           </div>
@@ -70,7 +70,7 @@ export default function Footer() {
             Nosotros
           </Typography>
           <div className="about-text">
-            <Typography variant="p" color="textSecondary">
+            <Typography variant="body2" color="textSecondary">
               {Texts.about}
             </Typography>
           </div>

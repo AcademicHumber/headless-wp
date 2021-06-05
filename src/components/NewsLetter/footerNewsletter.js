@@ -3,7 +3,6 @@ import React from "react"
 import Paper from "@material-ui/core/Paper"
 import IconButton from "@material-ui/core/IconButton"
 import SendIcon from "@material-ui/icons/Send"
-import FormHelperText from "@material-ui/core/FormHelperText"
 import InputBase from "@material-ui/core/InputBase"
 
 const formError = false

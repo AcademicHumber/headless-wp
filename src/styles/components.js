@@ -58,15 +58,37 @@ export const StyledMainSingleContentContainer = styled.section`
         }
       }
       .post-content {
-        padding: 2rem 0rem 2rem 1rem;
+        padding: 2rem 0rem 2rem 2rem;
       }
     }
 
     .blog-post-nav {
+      display: flex;
+      justify-content: space-between;
+
+      .prev-post {
+        flex-basis: 50%;
+      }
+
+      .next-post {
+        flex-basis: 50%;
+        text-align: right;
+        border-left: 1px solid #ccc;
+      }
     }
     // Define grid areas
     .blog-post {
       grid-area: content;
+    }
+
+    aside.sidebar {
+      grid-area: sidebar;
+
+      @media (min-width: 900px) {
+        & {
+          margin-left: 4rem;
+        }
+      }
     }
 
     .blog-post-nav {
@@ -77,6 +99,8 @@ export const StyledMainSingleContentContainer = styled.section`
       "content"
       "pagination"
       "sidebar";
+
+    padding: 0 2rem;
 
     @media (min-width: 500px) {
       & {
@@ -95,6 +119,7 @@ export const StyledMainSingleContentContainer = styled.section`
         grid-template-areas:
           " content content sidebar"
           " pagination pagination sidebar";
+        padding: 0;
       }
     }
   }

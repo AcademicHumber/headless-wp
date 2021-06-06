@@ -14,6 +14,7 @@ import { Typography } from "@material-ui/core"
 import { StyledMainSingleContentContainer } from "../styles/components"
 import NewsLetter from "../components/NewsLetter/newsletter"
 import Footer from "../components/Footer/footer"
+import LastPosts from "../components/widgets/LastPosts/lastPosts"
 
 const BlogPostTemplate = ({ data: { previous, next, post } }) => {
   const featuredImage = {
@@ -73,33 +74,36 @@ const BlogPostTemplate = ({ data: { previous, next, post } }) => {
 
             <hr />
           </article>
-          <nav className="blog-post-nav">
-            <ul
-              style={{
-                display: `flex`,
-                flexWrap: `wrap`,
-                justifyContent: `space-between`,
-                listStyle: `none`,
-                padding: 0,
-              }}
-            >
-              <li>
-                {previous && (
-                  <Link to={previous.uri} rel="prev">
+          <div className="blog-post-nav">
+            <div className="prev-post">
+              {previous && (
+                <Link to={previous.uri} rel="prev">
+                  <Typography variant="caption" color="primary">
                     ← {parse(previous.title)}
-                  </Link>
-                )}
-              </li>
-
-              <li>
-                {next && (
-                  <Link to={next.uri} rel="next">
+                  </Typography>
+                </Link>
+              )}
+            </div>
+            <div className="next-post">
+              {next && (
+                <Link to={next.uri} rel="next">
+                  <Typography variant="caption" color="primary">
                     {parse(next.title)} →
-                  </Link>
-                )}
-              </li>
-            </ul>
-          </nav>
+                  </Typography>
+                </Link>
+              )}
+            </div>
+          </div>
+          <aside className="sidebar">
+            <Typography
+              variant="h3"
+              color="textPrimary"
+              className="widget-title"
+            >
+              Últimas publicaciones
+            </Typography>
+            <LastPosts quantity="4" />
+          </aside>
         </section>
       </StyledMainSingleContentContainer>
       <NewsLetter />

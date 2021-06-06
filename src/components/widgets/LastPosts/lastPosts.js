@@ -50,6 +50,7 @@ const StyledWidget = styled.section`
     display: grid;
     grid-template-columns: 1fr 2fr;
     grid-template-rows: 1fr 0.2fr;
+    padding: 1rem 0;
 
     .post_item_image {
       grid-column: 1/2;
@@ -59,6 +60,9 @@ const StyledWidget = styled.section`
       .gatsby-image-wrapper {
         border-radius: 1.5rem;
         box-shadow: 0px 1px 3px 2px rgba(0, 0, 0, 0.3);
+        width: 8rem;
+        height: 8rem;
+        text-align: center;
       }
     }
 

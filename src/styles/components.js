@@ -5,6 +5,8 @@ import { Button } from "@material-ui/core"
 export const Container = styled.main`
   display: grid;
   min-height: 100vh;
+  padding-top: 0;
+  position: relative;
 
   a {
     text-decoration: none;
@@ -17,6 +19,7 @@ export const StyledMainContentContainer = styled.section`
   grid-column: 1 / -1;
   display: grid;
   grid-template-columns: 1fr minmax(320px, 1170px) 1fr;
+
   section.container {
     grid-column: 2/3;
     display: grid;
@@ -25,6 +28,13 @@ export const StyledMainContentContainer = styled.section`
     gap: 15px;
     grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
     flex-wrap: wrap;
+    padding: 0 2rem;
+
+    @media (min-width: 900px) {
+      & {
+        padding: 0;
+      }
+    }
   }
 `
 

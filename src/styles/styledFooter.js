@@ -43,6 +43,15 @@ export const StyledFooter = styled.footer.attrs(props => ({
       p {
         display: inline-block;
       }
+
+      .site-logo {
+        display: flex;
+        gap: 1rem;
+        .logo-image {
+          height: 4rem;
+          min-width: 5rem;
+        }
+      }
     }
 
     .about-info {

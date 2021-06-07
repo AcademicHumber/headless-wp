@@ -11,6 +11,42 @@ export const StyledSocials = styled.section`
 export const StyledHeader = styled.header.attrs(props => ({
   background: props.background || "#ccc",
 }))`
+  // Logo css
+  .site-logo {
+    display: flex;
+    gap: 1rem;
+
+    h1 {
+      font-size: 3.6rem;
+      @media (min-width: 60rem) {
+        font-size: 4.2rem;
+      }
+    }
+    .logo-image {
+      height: 4rem;
+      min-width: 4rem;
+      @media (min-width: 60rem) {
+        height: 4rem;
+        min-width: 5rem;
+      }
+    }
+  }
+
+  // Menus css
+
+  .desktop-menu {
+    display: none;
+  }
+
+  @media (min-width: 90rem) {
+    .desktop-menu {
+      display: flex;
+    }
+    .mobile-menu {
+      display: none;
+    }
+  }
+
   // Positioning
 
   grid-column: 1 / -1;
@@ -21,8 +57,10 @@ export const StyledHeader = styled.header.attrs(props => ({
   background-position: bottom;
 
   /* Spacing */
-
-  padding-top: 2.5rem;
+  .site-logo,
+  .desktop-menu {
+    padding-top: 2.5rem;
+  }
 
   & .navigation-items {
     // Grid box
@@ -38,6 +76,7 @@ export const StyledHeader = styled.header.attrs(props => ({
     }
   }
 
+  // Components css
   .hero {
     padding: 20vh 10vw;
     display: flex;
@@ -45,6 +84,7 @@ export const StyledHeader = styled.header.attrs(props => ({
     align-items: center;
     justify-content: center;
     border-radius: 0 0 30% 30%;
+    text-align: center;
   }
 
   ${above.medium`

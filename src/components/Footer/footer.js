@@ -1,5 +1,6 @@
 import React from "react"
 import LastPosts from "../widgets/LastPosts/lastPosts"
+import Logo from "../logo"
 import { Link, useStaticQuery, graphql } from "gatsby"
 import { StyledFooter } from "../../styles/styledFooter"
 import { useTheme } from "@material-ui/core/styles"
@@ -42,9 +43,12 @@ export default function Footer() {
       <section className="footer-container">
         {/* First Column */}
         <div className="site-info">
-          <Typography variant="h4" color="textSecondary">
-            {title}
-          </Typography>
+          <div className="site-logo">
+            <Logo />
+            <Typography variant="h4" color="textSecondary">
+              {title}
+            </Typography>
+          </div>
           <div className="open-hours">
             <AccessTime color="secondary" />
             <Typography variant="body2" color="textSecondary">

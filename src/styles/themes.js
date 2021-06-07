@@ -7,7 +7,7 @@ export const lawyersTheme = createMuiTheme({
       dark: "#2b354f",
     },
     secondary: {
-      light: "#fffff",
+      light: "#ffffff",
       main: "#9ca9c4",
     },
     text: {
@@ -22,6 +22,7 @@ export const lawyersTheme = createMuiTheme({
     fontFamily: "DM Sans, Roboto",
     h1: {
       fontSize: "4.2rem",
+      fontWeight: "bold",
     },
     h2: {
       fontSize: "3.4rem",

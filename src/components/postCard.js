@@ -55,7 +55,7 @@ export default function PostCard({ post }) {
 
 const StyledPostCard = styled(Card)`
   min-width: 300px;
-  width: 90%;
+  width: 80%;
   margin: 20px;
   display: flex;
   flex-direction: column;

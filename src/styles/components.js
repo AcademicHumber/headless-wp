@@ -36,6 +36,24 @@ export const StyledMainContentContainer = styled.section`
       }
     }
   }
+  .blog-post-nav {
+    grid-column: 2/3;
+    padding: 1rem 2rem;
+    border-top: 1px solid #ccc;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+
+    .prev-post {
+      flex-basis: 50%;
+    }
+
+    .next-post {
+      flex-basis: 50%;
+      text-align: right;
+      border-left: 1px solid #ccc;
+    }
+  }
 `
 
 // Blog post container

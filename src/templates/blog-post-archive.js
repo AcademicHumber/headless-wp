@@ -46,14 +46,27 @@ const BlogIndex = ({
           {posts.map(post => {
             return <PostCard key={post.uri} post={post} />
           })}
-          {previousPagePath && (
-            <>
-              <Link to={previousPagePath}>Previous page</Link>
-              <br />
-            </>
-          )}
-          {nextPagePath && <Link to={nextPagePath}>Next page</Link>}
         </section>
+        <div className="blog-post-nav">
+          <div className="prev-post">
+            {previousPagePath && (
+              <Link to={previousPagePath} rel="prev">
+                <Typography variant="caption" color="primary">
+                  ← Posts siguentes
+                </Typography>
+              </Link>
+            )}
+          </div>
+          <div className="next-post">
+            {nextPagePath && (
+              <Link to={nextPagePath} rel="next">
+                <Typography variant="caption" color="primary">
+                  Posts anteriores →
+                </Typography>
+              </Link>
+            )}
+          </div>
+        </div>
       </StyledMainContentContainer>
       <NewsLetter />
       <Footer />

@@ -27,9 +27,6 @@ export default function PostCard({ post }) {
           <div className="title-and-meta">
             <Typography variant="caption">{post.date}</Typography>
             <Link to={post.uri} itemProp="url">
-              {
-                //post title
-              }
               <Typography color="textPrimary" variant="h4">
                 {parse(title)}
               </Typography>

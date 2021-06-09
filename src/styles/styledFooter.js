@@ -44,7 +44,7 @@ export const StyledFooter = styled.footer.attrs(props => ({
         display: inline-block;
       }
 
-      .site-logo {
+      .site-logo a {
         display: flex;
         gap: 1rem;
         .logo-image {

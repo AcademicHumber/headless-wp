@@ -28,6 +28,8 @@ module.exports = {
           `https://suscripcion.focoazul.com/graphql`,
         schema: {
           timeout: 100000,
+          requestConcurrency: 50,
+          perPage: 50,
         },
       },
     },

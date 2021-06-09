@@ -44,10 +44,12 @@ export default function Footer() {
         {/* First Column */}
         <div className="site-info">
           <div className="site-logo">
-            <Logo />
-            <Typography variant="h4" color="textSecondary">
-              {title}
-            </Typography>
+            <Link to="/">
+              <Logo />
+              <Typography variant="h4" color="textSecondary">
+                {title}
+              </Typography>
+            </Link>
           </div>
           <div className="open-hours">
             <AccessTime color="secondary" />

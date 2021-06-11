@@ -2,7 +2,7 @@ import React from "react"
 import styled from "styled-components"
 import heroBackground from "../../../content/assets/fondo-hero.png"
 import { Typography } from "@material-ui/core"
-import NewsletterForm from "./newsletterForm"
+import NewsletterFormik from "./newsletterFormik"
 import { above } from "../../styles/index"
 
 const Texts = {
@@ -27,7 +27,7 @@ export default function NewsLetter() {
             {Texts.description}
           </Typography>
 
-          <NewsletterForm Texts={Texts} />
+          <NewsletterFormik Texts={Texts} />
         </div>
       </StyledNewsLetter>
     </>
@@ -70,6 +70,7 @@ const StyledNewsLetter = styled.div.attrs(props => ({
     .MuiButton-root {
       padding: 1.4rem 2.5rem;
       margin: 0 1rem;
+      height: 5.7rem;
     }
     .form-caption {
       flex-basis: 100%;
@@ -84,5 +85,10 @@ const StyledNewsLetter = styled.div.attrs(props => ({
       flex-basis: 20%;
     }
     `}
+  }
+  .formCompleted {
+    box-shadow: 0px 1px 3px 2px rgba(0, 0, 0, 0.3);
+    border-radius: 1rem;
+    padding: 2rem;
   }
 `

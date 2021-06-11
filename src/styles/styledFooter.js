@@ -61,17 +61,27 @@ export const StyledFooter = styled.footer.attrs(props => ({
     }
 
     .subscription-form {
-      .MuiPaper-root {
-        margin: 1rem 0;
+      .footer_Newsletter form {
         display: flex;
-        justify-content: space-around;
-      }
-      & form .MuiTextField-root {
-        width: 100%;
+        align-items: flex-start;
+
+        .MuiTextField-root {
+          width: 100%;
+        }
+        .MuiInputBase-root {
+        }
+        .subscription-send {
+          margin-top: 1.5rem;
+        }
       }
 
       input {
-        padding: 0.5rem 0;
+        padding: 0.5rem 0.5rem 0;
+        color: white;
+      }
+
+      .formCompleted {
+        padding: 2rem 0;
       }
     }
   }

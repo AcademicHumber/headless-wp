@@ -35,7 +35,12 @@ export default function PostCard({ post }) {
           {
             //post excerpt
           }
-          <Typography variant="body1" color="secondary" itemProp="description">
+          <Typography
+            variant="body1"
+            component="div"
+            color="secondary"
+            itemProp="description"
+          >
             {parse(post.excerpt)}
           </Typography>
         </section>

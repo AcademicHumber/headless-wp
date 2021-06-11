@@ -1,12 +1,20 @@
 /**
- * 👋 Hey there!
- * This file is the starting point for your new WordPress/Gatsby site! 🚀
- * For more information about what this file is and does, see
- * https://www.gatsbyjs.com/docs/gatsby-config/
+ * Suscripciones web
  *
+ * @author Adrian Fernandez
+ * @url https://www.linkedin.com/in/adrian-fernandez-1701/
  */
 
+require("dotenv").config({
+  path: `.env.${process.env.NODE_ENV}`,
+})
+
 module.exports = {
+  /* Adding Gatsby functions to project */
+
+  flags: {
+    FUNCTIONS: true,
+  },
   /**
    * Adding plugins to this array adds them to your Gatsby site.
    *
@@ -65,7 +73,7 @@ module.exports = {
         background_color: `#ffffff`,
         theme_color: `#3377ff`,
         display: `minimal-ui`,
-        icon: `content/assets/gatsby-icon.png`,
+        icon: `content/assets/suscripcion.png`,
       },
     },
 

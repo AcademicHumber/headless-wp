@@ -1,4 +1,5 @@
 import React from "react"
+import { MainContext } from "../../context/main-context"
 /**Form Imports */
 import IconButton from "@material-ui/core/IconButton"
 import SendIcon from "@material-ui/icons/Send"
@@ -8,10 +9,13 @@ import { TextField } from "formik-material-ui"
 import AnimatedMount from "../widgets/animatedMount"
 
 export default function FooterNewsletter({ Texts }) {
-  const [subscribed, setSubscribed] = React.useState(false)
-
-  //Save server response
-  const [response, setResponse] = React.useState("")
+  // Manage subscribed states
+  const {
+    subscribed,
+    setSubscribed,
+    subscriptionResponse,
+    setSubscriptionResponse,
+  } = React.useContext(MainContext)
 
   if (!subscribed) {
     return (
@@ -42,7 +46,7 @@ export default function FooterNewsletter({ Texts }) {
               })
               .then(res => res.json())
 
-            setResponse(serverResponse)
+            setSubscriptionResponse(serverResponse)
             setSubmitting(false)
             setSubscribed(true)
           }}
@@ -76,7 +80,7 @@ export default function FooterNewsletter({ Texts }) {
     return (
       <AnimatedMount className="formCompleted">
         <Typography variant="body1" color="primary">
-          {response}
+          {subscriptionResponse}
         </Typography>
       </AnimatedMount>
     )

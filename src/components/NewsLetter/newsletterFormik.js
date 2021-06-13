@@ -3,12 +3,16 @@ import { Formik, Form, Field } from "formik"
 import { Button, LinearProgress, Typography } from "@material-ui/core"
 import { TextField } from "formik-material-ui"
 import AnimatedMount from "../widgets/animatedMount"
+import { MainContext } from "../../context/main-context"
 
 export default function NewsLetterFormik({ Texts }) {
-  const [subscribed, setSubscribed] = React.useState(false)
-
-  //Save server response
-  const [response, setResponse] = React.useState("")
+  // Manage subscribed states
+  const {
+    subscribed,
+    setSubscribed,
+    subscriptionResponse,
+    setSubscriptionResponse,
+  } = React.useContext(MainContext)
 
   if (!subscribed) {
     return (
@@ -38,7 +42,7 @@ export default function NewsLetterFormik({ Texts }) {
             })
             .then(res => res.json())
 
-          setResponse(serverResponse)
+          setSubscriptionResponse(serverResponse)
           setSubmitting(false)
           setSubscribed(true)
         }}
@@ -70,7 +74,7 @@ export default function NewsLetterFormik({ Texts }) {
     return (
       <AnimatedMount>
         <Typography variant="body1" color="primary">
-          {response}
+          {subscriptionResponse}
         </Typography>
       </AnimatedMount>
     )

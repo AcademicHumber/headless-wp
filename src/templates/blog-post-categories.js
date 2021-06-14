@@ -43,7 +43,7 @@ const BlogIndex = ({
       <SEO title="Todas las publicaciones" />
       <StyledMainContentContainer>
         <section className="container">
-          {posts.map((post, index) => (
+          {posts.map(post => (
             <PostCard key={post.uri} post={post} />
           ))}
         </section>
@@ -77,11 +77,18 @@ const BlogIndex = ({
 export default BlogIndex
 
 export const pageQuery = graphql`
-  query WordPressPostArchive($offset: Int!, $postsPerPage: Int!) {
+  query WordPressPostArchivePerCategory(
+    $offset: Int!
+    $postsPerPage: Int!
+    $categoryId: String!
+  ) {
     allWpPost(
       sort: { fields: [date], order: DESC }
       limit: $postsPerPage
       skip: $offset
+      filter: {
+        categories: { nodes: { elemMatch: { id: { eq: $categoryId } } } }
+      }
     ) {
       nodes {
         excerpt

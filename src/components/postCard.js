@@ -14,6 +14,17 @@ export default function PostCard({ post }) {
     alt: post.featuredImage?.node?.alt || ``,
   }
 
+  // Format date
+  const postDate = new Date(post.date)
+  const options = {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  }
+
+  // Categories
+  const postCategories = post.categories.nodes
+
   return (
     <>
       <StyledPostCard>
@@ -25,12 +36,29 @@ export default function PostCard({ post }) {
         )}
         <section className="card-content">
           <div className="title-and-meta">
-            <Typography variant="caption">{post.date}</Typography>
+            <Typography variant="caption">
+              {postDate.toLocaleDateString("es-ES", options)}
+            </Typography>
             <Link to={post.uri} itemProp="url">
               <Typography color="textPrimary" variant="h4">
                 {parse(title)}
               </Typography>
             </Link>
+            {postCategories && (
+              <div className="post-categories">
+                {postCategories.map((category, index) => (
+                  <>
+                    {index == 0 ? "Categorías: " : ""}
+                    <Link key={index} to={category.uri} itemProp="url">
+                      <Typography variant="body2" component="span">
+                        {category.name}
+                      </Typography>
+                    </Link>
+                    {postCategories[index + 1] ? ", " : ""}
+                  </>
+                ))}
+              </div>
+            )}
           </div>
           {
             //post excerpt

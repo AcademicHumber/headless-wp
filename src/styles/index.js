@@ -44,6 +44,8 @@ export const GlobalStyles = createGlobalStyle`
   }
   body {
     font-size: 1.6rem;
+    -ms-word-wrap: break-word;
+  word-wrap: break-word;
   }
   main{
     padding-top: 3.5rem;

@@ -3,10 +3,6 @@ import { Link, graphql } from "gatsby"
 import Image from "gatsby-image"
 import parse from "html-react-parser"
 import heroBackground from "../../content/assets/fondo-hero.png"
-
-// We're using Gutenberg so we need the block styles
-import "@wordpress/block-library/build-style/style.css"
-import "@wordpress/block-library/build-style/theme.css"
 import Bio from "../components/bio"
 import SEO from "../components/seo"
 import Header from "../components/Header/header"
@@ -16,10 +12,22 @@ import NewsLetter from "../components/NewsLetter/newsletter"
 import Footer from "../components/Footer/footer"
 import LastPosts from "../components/widgets/LastPosts/lastPosts"
 
+// We're using Gutenberg so we need the block styles
+import "@wordpress/block-library/build-style/style.css"
+import "@wordpress/block-library/build-style/theme.css"
+
 const BlogPostTemplate = ({ data: { previous, next, post } }) => {
   const featuredImage = {
     fluid: post.featuredImage?.node?.localFile?.childImageSharp?.fluid,
     alt: post.featuredImage?.node?.alt || ``,
+  }
+
+  // Format date
+  const postDate = new Date(post.date)
+  const options = {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
   }
 
   return (
@@ -53,7 +61,7 @@ const BlogPostTemplate = ({ data: { previous, next, post } }) => {
               color="textSecondary"
               className="post-date"
             >
-              {post.date}
+              {postDate.toLocaleDateString("es-ES", options)}
             </Typography>
             <Typography variant="h2" color="textPrimary" className="post-title">
               {parse(post.title)}
@@ -65,6 +73,7 @@ const BlogPostTemplate = ({ data: { previous, next, post } }) => {
             {!!post.content && (
               <Typography
                 variant="body1"
+                component="section"
                 color="textPrimary"
                 className="post-content"
               >
@@ -129,6 +138,7 @@ export const pageQuery = graphql`
       title
       date(formatString: "DD MMMM, YYYY")
 
+      #Query for featured image data
       featuredImage {
         node {
           altText

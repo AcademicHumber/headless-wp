@@ -12,7 +12,7 @@ export default function Footer() {
   const Texts = {
     openHours: "Lun - Vie: 8:00am a 5:00 pm",
     location: "Equipetrol, barrio braniff",
-    phone: "3 3334444",
+    phone: "(3) 333 4444",
     about:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis. ",
     placeholder: "Tu correo",
@@ -58,16 +58,23 @@ export default function Footer() {
             </Typography>
           </div>
           <div className="location">
-            <LocationOn color="secondary" />
-            <Typography variant="body2" color="textSecondary">
-              {Texts.location}
-            </Typography>
+            <a
+              href="https://www.google.com/maps/place/Equipetrol/@-17.7707486,-63.1964832,17z/data=!3m1!4b1!4m5!3m4!1s0x93f1e7fb788b0569:0x15933e0d841fb04b!8m2!3d-17.7706885!4d-63.194269"
+              target="_blank"
+            >
+              <LocationOn color="secondary" />
+              <Typography variant="body2" color="textSecondary">
+                {Texts.location}
+              </Typography>
+            </a>
           </div>
           <div className="phone">
-            <Phone color="secondary" />
-            <Typography variant="body2" color="textSecondary">
-              {Texts.phone}
-            </Typography>
+            <a href={`tel:${Texts.phone}`}>
+              <Phone color="secondary" />
+              <Typography variant="body2" color="textSecondary">
+                {Texts.phone}
+              </Typography>
+            </a>
           </div>
         </div>
         {/* Second Column */}

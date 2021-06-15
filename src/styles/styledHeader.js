@@ -65,7 +65,9 @@ export const StyledHeader = styled.header.attrs(props => ({
   & .navigation-items {
     // Grid box
     display: grid;
-    grid-template-columns: 1fr 2fr 1fr;
+    grid-template-columns: 1fr 2fr;
+    max-width: 130rem;
+    margin: auto;
 
     justify-items: center;
     & > section {

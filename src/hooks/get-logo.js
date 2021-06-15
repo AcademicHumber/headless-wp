@@ -11,9 +11,11 @@ export const useSiteLogo = () => {
             sourceUrl
             localFile {
               childImageSharp {
-                fluid(maxWidth: 300, quality: 100) {
-                  ...GatsbyImageSharpFluid_tracedSVG
-                }
+                gatsbyImageData(
+                  width: 50
+                  quality: 100
+                  placeholder: TRACED_SVG
+                )
               }
             }
             altText

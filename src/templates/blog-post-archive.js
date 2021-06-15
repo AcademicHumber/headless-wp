@@ -88,8 +88,6 @@ export const pageQuery = graphql`
         uri
         date(formatString: "MMMM DD, YYYY")
         title
-
-        #Query for categories
         categories {
           nodes {
             id
@@ -97,15 +95,16 @@ export const pageQuery = graphql`
             name
           }
         }
-        # Featured image data
         featuredImage {
           node {
             altText
             localFile {
               childImageSharp {
-                fluid(maxHeight: 350, quality: 100) {
-                  ...GatsbyImageSharpFluid_tracedSVG
-                }
+                gatsbyImageData(
+                  height: 350
+                  quality: 100
+                  placeholder: TRACED_SVG
+                )
               }
             }
           }

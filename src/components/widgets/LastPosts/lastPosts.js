@@ -19,9 +19,11 @@ export default function LastPosts({ quantity }) {
               altText
               localFile {
                 childImageSharp {
-                  fluid(maxHeight: 100, quality: 100) {
-                    ...GatsbyImageSharpFluid_tracedSVG
-                  }
+                  gatsbyImageData(
+                    height: 100
+                    quality: 100
+                    placeholder: TRACED_SVG
+                  )
                 }
               }
             }

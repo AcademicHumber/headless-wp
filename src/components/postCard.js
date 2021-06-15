@@ -1,7 +1,7 @@
 import React from "react"
 import { Link } from "gatsby"
 import parse from "html-react-parser"
-import Image from "gatsby-image"
+import { GatsbyImage } from "gatsby-plugin-image"
 import { Card, Typography } from "@material-ui/core"
 import styled from "styled-components"
 import { StyledButton } from "../styles/components"
@@ -10,7 +10,8 @@ import { above } from "../styles/index"
 export default function PostCard({ post }) {
   const title = post.title
   const featuredImage = {
-    fluid: post.featuredImage?.node?.localFile?.childImageSharp?.fluid,
+    image:
+      post.featuredImage?.node?.localFile?.childImageSharp?.gatsbyImageData,
     alt: post.featuredImage?.node?.alt || ``,
   }
 
@@ -29,9 +30,9 @@ export default function PostCard({ post }) {
     <>
       <StyledPostCard>
         {/* if we have a featured image for this post let's display it */}
-        {featuredImage?.fluid && (
+        {featuredImage?.image && (
           <Link to={post.uri}>
-            <Image fluid={featuredImage.fluid} alt={featuredImage.alt} />
+            <GatsbyImage image={featuredImage.image} alt={featuredImage.alt} />
           </Link>
         )}
         <section className="card-content">

@@ -1,5 +1,5 @@
 import React from "react"
-import Image from "gatsby-image"
+import { GatsbyImage } from "gatsby-plugin-image"
 import { useSiteLogo } from "../hooks/get-logo"
 
 export default function Logo() {
@@ -8,11 +8,16 @@ export default function Logo() {
 
   if (siteLogo != null) {
     const logoImg = {
-      fluid: siteLogo.localFile?.childImageSharp?.fluid,
+      image: siteLogo.localFile?.childImageSharp?.gatsbyImageData,
       alt: siteLogo.altText || ``,
     }
     return (
-      <Image fluid={logoImg.fluid} alt={logoImg.alt} className="logo-image" />
+      <GatsbyImage
+        image={logoImg.image}
+        alt={logoImg.alt}
+        className="logo-image"
+        objectFit="contain"
+      />
     )
   } else {
     return <div></div>

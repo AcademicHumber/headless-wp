@@ -10,11 +10,12 @@ import { Typography } from "@material-ui/core"
 import NewsLetter from "../components/NewsLetter/newsletter"
 import heroBackground from "../../content/assets/fondo-hero.png"
 
-const BlogIndex = ({
+const BlogCategoryIndex = ({
   data,
   pageContext: { nextPagePath, previousPagePath },
 }) => {
   const posts = data.allWpPost.nodes
+  const categoryName = data.wpCategory.name
 
   if (!posts.length) {
     return (
@@ -37,10 +38,13 @@ const BlogIndex = ({
           <Typography variant="h1" color="textPrimary">
             Encuentra las últimas noticias
           </Typography>
-          <Typography variant="caption"> Home - Blog</Typography>
+          <Typography variant="caption">
+            {" "}
+            Home - Blog - Categoría: {categoryName}
+          </Typography>
         </section>
       </Header>
-      <SEO title="Todas las publicaciones" />
+      <SEO title={`Publicaciones de la categoría ${categoryName}`} />
       <StyledMainContentContainer>
         <section className="container">
           {posts.map(post => (
@@ -74,20 +78,20 @@ const BlogIndex = ({
   )
 }
 
-export default BlogIndex
+export default BlogCategoryIndex
 
 export const pageQuery = graphql`
   query WordPressPostArchivePerCategory(
     $offset: Int!
     $postsPerPage: Int!
-    $categoryId: String!
+    $taxonomyId: String!
   ) {
     allWpPost(
       sort: { fields: [date], order: DESC }
       limit: $postsPerPage
       skip: $offset
       filter: {
-        categories: { nodes: { elemMatch: { id: { eq: $categoryId } } } }
+        categories: { nodes: { elemMatch: { id: { eq: $taxonomyId } } } }
       }
     ) {
       nodes {
@@ -118,6 +122,11 @@ export const pageQuery = graphql`
           }
         }
       }
+    }
+
+    # Get category name
+    wpCategory(id: { eq: $taxonomyId }) {
+      name
     }
   }
 `

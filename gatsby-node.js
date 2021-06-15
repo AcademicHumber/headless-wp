@@ -18,6 +18,9 @@ exports.createPages = async gatsbyUtilities => {
   // Query for categories from the GraphQL server
   const categories = await getCategories(gatsbyUtilities)
 
+  // Query for tags from the GraphQL server
+  const tags = await getTags(gatsbyUtilities)
+
   // Query for the postsPerPage
   const { postsPerPage } = await getPostsPerPage(gatsbyUtilities)
 
@@ -33,12 +36,27 @@ exports.createPages = async gatsbyUtilities => {
   await createBlogPostArchive({ posts, gatsbyUtilities, postsPerPage })
 
   //Create Categories pages
+
+  const categoriesTaxonomy = "category"
   categories.map(async category => {
-    await createIndividualBlogPostsCategoryPage({
+    await createIndividualBlogPostsTaxonomyPage({
       posts,
       gatsbyUtilities,
-      category,
+      taxonomy: category,
       postsPerPage,
+      taxonomyName: "category",
+    })
+  })
+
+  // Create tags pages
+  const tagsTaxonomy = "tag"
+  tags.map(async tag => {
+    await createIndividualBlogPostsTaxonomyPage({
+      posts,
+      gatsbyUtilities,
+      taxonomy: tag,
+      postsPerPage,
+      taxonomyName: "tag",
     })
   })
 }
@@ -126,24 +144,41 @@ async function createBlogPostArchive({ posts, gatsbyUtilities, postsPerPage }) {
 }
 
 /**
- * This function creates all the individual category pages in this site
+ * This function creates all the individual taxonomy pages in this site
  */
-const createIndividualBlogPostsCategoryPage = async ({
+const createIndividualBlogPostsTaxonomyPage = async ({
   posts,
   gatsbyUtilities,
-  category,
+  taxonomy,
   postsPerPage,
+  taxonomyName,
 }) => {
-  // Filter only the posts that has this category
-  const categoryPosts = posts.filter(uniquePost => {
-    postCategories = uniquePost.post.categories.nodes
-    return postCategories.some(
-      cat => JSON.stringify(cat) === JSON.stringify(category)
-    )
+  // Filter only the posts that has this taxonomy
+  const taxonomyPosts = posts.filter(uniquePost => {
+    // We have to determine whether it is category or tags
+    switch (taxonomyName) {
+      case "category":
+        postTaxonomies = uniquePost.post.categories.nodes
+        // Determines if this post has the current taxonomy
+        return postTaxonomies.some(
+          tax => JSON.stringify(tax) === JSON.stringify(taxonomy)
+        )
+
+      case "tag":
+        postTaxonomies = uniquePost.post.tags.nodes
+        return postTaxonomies.some(
+          tax => JSON.stringify(tax) === JSON.stringify(taxonomy)
+        )
+      default:
+        console.log(`neither reached at ${taxonomyName}`)
+        return false
+    }
   })
 
-  const postsChunkedIntoArchivePages = chunk(categoryPosts, postsPerPage)
+  const postsChunkedIntoArchivePages = chunk(taxonomyPosts, postsPerPage)
   const totalPages = postsChunkedIntoArchivePages.length
+
+  const templatePath = `./src/templates/blog-post-${taxonomyName}.js`
 
   Promise.all(
     postsChunkedIntoArchivePages.map(async (_posts, index) => {
@@ -159,26 +194,26 @@ const createIndividualBlogPostsCategoryPage = async ({
         return null
       }
 
-      const pagePath = `${category.uri + getPagePath(pageNumber)}`
+      const pagePath = `${taxonomy.uri + getPagePath(pageNumber)}`
       const nextPagePath = getPagePath(pageNumber + 1)
-        ? `${category.uri + getPagePath(pageNumber + 1)}`
+        ? `${taxonomy.uri + getPagePath(pageNumber + 1)}`
         : null
 
       // To prev page need a second validation in case getPagePath returns '' because
       // it will go trough false way
       const prevPagePath =
         getPagePath(pageNumber - 1) || getPagePath(pageNumber - 1) == ""
-          ? `${category.uri + getPagePath(pageNumber - 1)}`
+          ? `${taxonomy.uri + getPagePath(pageNumber - 1)}`
           : null
 
       // createPage is an action passed to createPages
       // See https://www.gatsbyjs.com/docs/actions#createPage for more info
       await gatsbyUtilities.actions.createPage({
         path: pagePath,
-        component: path.resolve(`./src/templates/blog-post-categories.js`),
+        component: path.resolve(templatePath),
         context: {
           offset: index * postsPerPage,
-          categoryId: category.id,
+          taxonomyId: taxonomy.id,
           postsPerPage,
           nextPagePath: nextPagePath,
           previousPagePath: prevPagePath,
@@ -249,9 +284,6 @@ async function getPosts({ graphql, reporter }) {
 /**
  * This function queries Gatsby's GraphQL server and asks for
  * All WordPress categories.
- *
- * We're passing in the utilities we got from createPages.
- * So see https://www.gatsbyjs.com/docs/node-apis/#createPages for more info!
  */
 async function getCategories({ graphql, reporter }) {
   const graphqlResult = await graphql(/* GraphQL */ `
@@ -267,13 +299,40 @@ async function getCategories({ graphql, reporter }) {
 
   if (graphqlResult.errors) {
     reporter.panicOnBuild(
-      `Ha habido un error cargando los posts`,
+      `Ha habido un error cargando las categorías`,
       graphqlResult.errors
     )
     return
   }
 
   return graphqlResult.data.allWpCategory.categories
+}
+
+/**
+ * This function queries Gatsby's GraphQL server and asks for
+ * All WordPress tags.
+ */
+async function getTags({ graphql, reporter }) {
+  const graphqlResult = await graphql(/* GraphQL */ `
+    query GetTags {
+      allWpTag {
+        tags: nodes {
+          id
+          uri
+        }
+      }
+    }
+  `)
+
+  if (graphqlResult.errors) {
+    reporter.panicOnBuild(
+      `Ha habido un error cargando las etiquetas`,
+      graphqlResult.errors
+    )
+    return
+  }
+
+  return graphqlResult.data.allWpTag.tags
 }
 
 /* Funtion to get postPerPage */

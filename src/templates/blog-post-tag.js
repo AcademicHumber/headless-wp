@@ -10,11 +10,12 @@ import { Typography } from "@material-ui/core"
 import NewsLetter from "../components/NewsLetter/newsletter"
 import heroBackground from "../../content/assets/fondo-hero.png"
 
-const BlogIndex = ({
+const BlogTagIndex = ({
   data,
   pageContext: { nextPagePath, previousPagePath },
 }) => {
   const posts = data.allWpPost.nodes
+  const tagName = data.wpTag.name
 
   if (!posts.length) {
     return (
@@ -37,10 +38,13 @@ const BlogIndex = ({
           <Typography variant="h1" color="textPrimary">
             Encuentra las últimas noticias
           </Typography>
-          <Typography variant="caption"> Home - Blog</Typography>
+          <Typography variant="caption">
+            {" "}
+            Home - Blog - Etiqueta: {tagName}
+          </Typography>
         </section>
       </Header>
-      <SEO title="Todas las publicaciones" />
+      <SEO title={`Publicaciones de la etiqueta ${tagName}`} />
       <StyledMainContentContainer>
         <section className="container">
           {posts.map(post => (
@@ -74,14 +78,19 @@ const BlogIndex = ({
   )
 }
 
-export default BlogIndex
+export default BlogTagIndex
 
 export const pageQuery = graphql`
-  query WordPressPostArchive($offset: Int!, $postsPerPage: Int!) {
+  query WordPressPostArchivePerTag(
+    $offset: Int!
+    $postsPerPage: Int!
+    $taxonomyId: String!
+  ) {
     allWpPost(
       sort: { fields: [date], order: DESC }
       limit: $postsPerPage
       skip: $offset
+      filter: { tags: { nodes: { elemMatch: { id: { eq: $taxonomyId } } } } }
     ) {
       nodes {
         excerpt
@@ -111,6 +120,11 @@ export const pageQuery = graphql`
           }
         }
       }
+    }
+
+    # Get Tag Name
+    wpTag(id: { eq: $taxonomyId }) {
+      name
     }
   }
 `

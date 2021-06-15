@@ -57,7 +57,9 @@ export const StyledMainContentContainer = styled.section`
 `
 
 // Blog post container
-export const StyledMainSingleContentContainer = styled.section`
+export const StyledMainSingleContentContainer = styled.section.attrs(props => ({
+  theme: props.theme,
+}))`
   padding: 5vh 0;
   grid-column: 1 / -1;
   display: grid;
@@ -71,6 +73,21 @@ export const StyledMainSingleContentContainer = styled.section`
     .blog-post {
       .post-image {
         margin-bottom: 2rem;
+      }
+
+      .post-categories {
+        margin: 1rem 0;
+        .postCategory {
+          padding: 0.5rem 1rem;
+          color: ${props => props.theme.palette.secondary.light};
+          background-color: ${props => props.theme.palette.primary.main};
+          border-radius: 1rem;
+          margin-right: 0.5rem;
+          transition: all 0.2s ease;
+          &:hover {
+            opacity: 0.8;
+          }
+        }
       }
       .post-title {
         margin: 2rem 0;
@@ -87,6 +104,24 @@ export const StyledMainSingleContentContainer = styled.section`
       }
       .post-content {
         padding: 2rem 0rem 2rem 2rem;
+      }
+      .post-tags {
+        text-align: center;
+        margin: 1.5rem 0 2.5rem;
+        .postTagsTitle {
+          margin: 0 0 1.5rem;
+        }
+        .postTag {
+          padding: 0.5rem 1rem;
+          border: 2px solid ${props => props.theme.palette.primary.main};
+          margin: 0.5rem;
+          color: ${props => props.theme.palette.primary.main};
+          transition: all 0.2s ease;
+          &:hover {
+            color: ${props => props.theme.palette.secondary.light};
+            background-color: ${props => props.theme.palette.primary.main};
+          }
+        }
       }
     }
 

@@ -48,7 +48,7 @@ export default function PostCard({ post }) {
               <div className="post-categories">
                 {postCategories.map((category, index) => (
                   <>
-                    {index == 0 ? "Categorías: " : ""}
+                    {index === 0 ? "Categorías: " : ""}
                     <Link key={index} to={category.uri} itemProp="url">
                       <Typography variant="body2" component="span">
                         {category.name}

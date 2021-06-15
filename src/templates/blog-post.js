@@ -11,6 +11,7 @@ import { StyledMainSingleContentContainer } from "../styles/components"
 import NewsLetter from "../components/NewsLetter/newsletter"
 import Footer from "../components/Footer/footer"
 import LastPosts from "../components/widgets/LastPosts/lastPosts"
+import { useTheme } from "@material-ui/core/styles"
 
 // We're using Gutenberg so we need the block styles
 import "@wordpress/block-library/build-style/style.css"
@@ -30,6 +31,12 @@ const BlogPostTemplate = ({ data: { previous, next, post } }) => {
     day: "numeric",
   }
 
+  // Get categories and tags
+  const postCategories = post.categories.nodes
+  const postTags = post.tags.nodes
+
+  // Get theme
+  const theme = useTheme()
   return (
     <>
       <Header background={heroBackground}>
@@ -41,7 +48,7 @@ const BlogPostTemplate = ({ data: { previous, next, post } }) => {
         </section>
       </Header>
       <SEO title={post.title} description={post.excerpt} />
-      <StyledMainSingleContentContainer>
+      <StyledMainSingleContentContainer theme={theme}>
         <section className="container">
           <article
             className="blog-post"
@@ -63,6 +70,22 @@ const BlogPostTemplate = ({ data: { previous, next, post } }) => {
             >
               {postDate.toLocaleDateString("es-ES", options)}
             </Typography>
+            {postCategories.length !== 0 && (
+              <div className="post-categories">
+                {postCategories.map((category, index) => (
+                  <Link
+                    key={index}
+                    to={category.uri}
+                    itemProp="url"
+                    className="postCategory"
+                  >
+                    <Typography variant="body2" component="span">
+                      {category.name}
+                    </Typography>
+                  </Link>
+                ))}
+              </div>
+            )}
             <Typography variant="h2" color="textPrimary" className="post-title">
               {parse(post.title)}
             </Typography>
@@ -81,6 +104,38 @@ const BlogPostTemplate = ({ data: { previous, next, post } }) => {
               </Typography>
             )}
 
+            {postTags.length !== 0 && (
+              <>
+                <hr />
+                <div className="post-tags">
+                  {postTags.map((tag, index) => (
+                    <>
+                      {index === 0 ? (
+                        <Typography
+                          variant="h5"
+                          color="textPrimary"
+                          className="postTagsTitle"
+                        >
+                          Etiquetas del post:{" "}
+                        </Typography>
+                      ) : (
+                        ""
+                      )}
+                      <Link
+                        key={tag.uri}
+                        to={tag.uri}
+                        itemProp="url"
+                        className="postTag"
+                      >
+                        <Typography variant="body2" component="span">
+                          {`#${tag.name}`}
+                        </Typography>
+                      </Link>
+                    </>
+                  ))}
+                </div>
+              </>
+            )}
             <hr />
           </article>
           <div className="blog-post-nav">
@@ -137,6 +192,24 @@ export const pageQuery = graphql`
       content
       title
       date(formatString: "DD MMMM, YYYY")
+
+      #Query for categories
+      categories {
+        nodes {
+          id
+          uri
+          name
+        }
+      }
+
+      #Query for tags
+      tags {
+        nodes {
+          id
+          uri
+          name
+        }
+      }
 
       #Query for featured image data
       featuredImage {

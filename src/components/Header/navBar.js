@@ -13,13 +13,25 @@ export default function NavBar() {
         if (!menuItem.children.length) {
           return (
             <div className="menu-item" key={menuItem.id}>
-              <Link to={menuItem.path}>{menuItem.label}</Link>
+              <Link
+                to={menuItem.path}
+                activeClassName="active"
+                partiallyActive={menuItem.path !== "/"}
+              >
+                {menuItem.label}
+              </Link>
             </div>
           )
         } else {
           return (
             <div className="menu-item" key={menuItem.id}>
-              <Link to={menuItem.path}>{menuItem.label}</Link>
+              <Link
+                to={menuItem.path}
+                activeClassName="active"
+                partiallyActive={true}
+              >
+                {menuItem.label}
+              </Link>
               <MenuChildren key={index} child={menuItem.children} />
             </div>
           )

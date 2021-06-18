@@ -77,12 +77,14 @@ export const StyledMainSingleContentContainer = styled.section.attrs(props => ({
 
       .post-categories {
         margin: 1rem 0;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
         .postCategory {
           padding: 0.5rem 1rem;
           color: ${props => props.theme.palette.secondary.light};
           background-color: ${props => props.theme.palette.primary.main};
           border-radius: 1rem;
-          margin-right: 0.5rem;
           transition: all 0.2s ease;
           &:hover {
             opacity: 0.8;
@@ -105,12 +107,16 @@ export const StyledMainSingleContentContainer = styled.section.attrs(props => ({
       .post-content {
         padding: 2rem 0rem 2rem 2rem;
       }
+      .postTagsTitle {
+        margin: 1.5rem 0;
+      }
       .post-tags {
         text-align: center;
         margin: 1.5rem 0 2.5rem;
-        .postTagsTitle {
-          margin: 0 0 1.5rem;
-        }
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+
         .postTag {
           padding: 0.5rem 1rem;
           border: 2px solid ${props => props.theme.palette.primary.main};

@@ -11,6 +11,9 @@ export const StyledSocials = styled.section`
 export const StyledHeader = styled.header.attrs(props => ({
   background: props.background || "#ccc",
 }))`
+  @media (max-width: 76.8rem) {
+    padding: 0 2rem;
+  }
   // Logo css
   .site-logo {
     display: flex;
@@ -56,6 +59,10 @@ export const StyledHeader = styled.header.attrs(props => ({
   background-repeat: no-repeat;
   background-position: bottom;
 
+  @media (max-width: 76.8rem) {
+    background-position: top;
+  }
+
   /* Spacing */
   .site-logo,
   .desktop-menu {
@@ -68,6 +75,7 @@ export const StyledHeader = styled.header.attrs(props => ({
     grid-template-columns: 1fr 2fr;
     max-width: 130rem;
     margin: auto;
+    padding: 0;
 
     justify-items: center;
     & > section {
@@ -115,6 +123,11 @@ export const StyledMenu = styled.section`
   .menu-item {
     display: flex;
     align-items: center;
+
+    .active {
+      font-weight: bold;
+      border-bottom: 1px solid;
+    }
   }
 
   @media (max-width: 600px) {

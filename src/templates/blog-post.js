@@ -36,6 +36,8 @@ const BlogPostTemplate = ({ data: { previous, next, post } }) => {
   const postCategories = post.categories.nodes
   const postTags = post.tags.nodes
 
+  console.log(postCategories)
+
   // Get theme
   const theme = useTheme()
   return (
@@ -109,19 +111,8 @@ const BlogPostTemplate = ({ data: { previous, next, post } }) => {
               <>
                 <hr />
                 <div className="post-tags">
-                  {postTags.map((tag, index) => (
+                  {postTags.map(tag => (
                     <>
-                      {index === 0 ? (
-                        <Typography
-                          variant="h5"
-                          color="textPrimary"
-                          className="postTagsTitle"
-                        >
-                          Etiquetas del post:{" "}
-                        </Typography>
-                      ) : (
-                        ""
-                      )}
                       <Link
                         key={tag.uri}
                         to={tag.uri}

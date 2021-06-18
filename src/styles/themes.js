@@ -26,16 +26,20 @@ export const lawyersTheme = createMuiTheme({
     },
     h2: {
       fontSize: "3.4rem",
+      fontWeight: "bold",
     },
     h3: {
       fontSize: "2.8rem",
+      fontWeight: "bold",
     },
     h4: {
       fontSize: "2.2rem",
       margin: "10px 0",
+      fontWeight: "bold",
     },
     h5: {
       fontSize: "1.8rem",
+      fontWeight: "bold",
     },
     h6: {
       fontSize: "1.6rem",

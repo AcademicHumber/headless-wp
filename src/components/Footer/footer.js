@@ -61,6 +61,7 @@ export default function Footer() {
             <a
               href="https://www.google.com/maps/place/Equipetrol/@-17.7707486,-63.1964832,17z/data=!3m1!4b1!4m5!3m4!1s0x93f1e7fb788b0569:0x15933e0d841fb04b!8m2!3d-17.7706885!4d-63.194269"
               target="_blank"
+              rel="noreferrer"
             >
               <LocationOn color="secondary" />
               <Typography variant="body2" color="textSecondary">

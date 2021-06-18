@@ -12,6 +12,13 @@ const chunk = require(`lodash/chunk`)
  * See https://www.gatsbyjs.com/docs/node-apis/#createPages for more info.
  */
 exports.createPages = async gatsbyUtilities => {
+  // Query for the postsPerPage
+  const { postsPerPage } = await getPostsPerPage(gatsbyUtilities)
+
+  /*
+   * CREATE BLOG POSTS PAGES ( Individual and Archive )
+   */
+
   // Query our posts from the GraphQL server
   const posts = await getPosts(gatsbyUtilities)
 
@@ -21,14 +28,10 @@ exports.createPages = async gatsbyUtilities => {
   // Query for tags from the GraphQL server
   const tags = await getTags(gatsbyUtilities)
 
-  // Query for the postsPerPage
-  const { postsPerPage } = await getPostsPerPage(gatsbyUtilities)
-
   // If there are no posts in WordPress, don't do anything
   if (!posts.length) {
     return
   }
-
   // If there are posts, create pages for them
   await createIndividualBlogPostPages({ posts, gatsbyUtilities })
 
@@ -37,7 +40,6 @@ exports.createPages = async gatsbyUtilities => {
 
   //Create Categories pages
 
-  const categoriesTaxonomy = "category"
   categories.map(async category => {
     await createIndividualBlogPostsTaxonomyPage({
       posts,
@@ -49,7 +51,6 @@ exports.createPages = async gatsbyUtilities => {
   })
 
   // Create tags pages
-  const tagsTaxonomy = "tag"
   tags.map(async tag => {
     await createIndividualBlogPostsTaxonomyPage({
       posts,
@@ -59,7 +60,33 @@ exports.createPages = async gatsbyUtilities => {
       taxonomyName: "tag",
     })
   })
+
+  /*
+   * CREATE SERVICES PAGES ( Individual and archive )
+   */
+
+  const services = await getServices(gatsbyUtilities)
+
+  await createIndividualServicesPages({ services, gatsbyUtilities })
 }
+
+/**
+ * This function creates all the individual services pages in this site
+ */
+const createIndividualServicesPages = async ({ services, gatsbyUtilities }) =>
+  Promise.all(
+    services.map(({ previous, service, next }) =>
+      gatsbyUtilities.actions.createPage({
+        path: service.uri,
+        component: path.resolve(`./src/templates/service.js`),
+        context: {
+          id: service.id,
+          previousServiceId: previous ? previous.id : null,
+          nextServiceId: next ? next.id : null,
+        },
+      })
+    )
+  )
 
 /**
  * This function creates all the individual blog post pages in this site
@@ -223,6 +250,14 @@ const createIndividualBlogPostsTaxonomyPage = async ({
   )
 }
 
+/* ===============================================================
+ *                          QUERYS
+ * ===============================================================*/
+
+/**
+ * Post type: Posts
+ */
+
 /**
  * This function queries Gatsby's GraphQL server and asks for
  * All WordPress blog posts. If there are any GraphQL error it throws an error
@@ -357,4 +392,41 @@ async function getPostsPerPage({ graphql, reporter }) {
   }
 
   return graphqlResult.data.wp.readingSettings
+}
+
+/**
+ * Post type: Services
+ */
+
+async function getServices({ graphql, reporter }) {
+  const graphqlResult = await graphql(/* GraphQL */ `
+    {
+      allWpServicio {
+        edges {
+          next {
+            id
+            uri
+          }
+          service: node {
+            id
+            uri
+          }
+          previous {
+            id
+            uri
+          }
+        }
+      }
+    }
+  `)
+
+  if (graphqlResult.errors) {
+    reporter.panicOnBuild(
+      `Ha habido un error cargando los servicios`,
+      graphqlResult.errors
+    )
+    return
+  }
+
+  return graphqlResult.data.allWpServicio.edges
 }

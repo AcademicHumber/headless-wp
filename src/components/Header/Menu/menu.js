@@ -24,14 +24,25 @@ export default function Menu({ open, title }) {
       {menu.map((menuItem, index) => {
         if (!menuItem.children.length) {
           return (
-            <div className="menu-item" key={menuItem.id}>
-              <Link to={menuItem.path}>{menuItem.label}</Link>
-            </div>
+            <Link
+              to={menuItem.path}
+              activeClassName="active"
+              partiallyActive={menuItem.path !== "/"}
+              key={menuItem.id}
+            >
+              {menuItem.label}
+            </Link>
           )
         } else {
           return (
             <div className="menu-item with-children" key={menuItem.id}>
-              <Link to={menuItem.path}>{menuItem.label}</Link>
+              <Link
+                to={menuItem.path}
+                activeClassName="active"
+                partiallyActive={true}
+              >
+                {menuItem.label}
+              </Link>
               <MenuChildren key={index} child={menuItem.children} />
             </div>
           )
@@ -107,6 +118,11 @@ const StyledMenu = styled.nav.attrs(props => ({
     color: ${props => props.theme.palette.secondary.light};
     text-decoration: none;
     transition: color 0.2s linear;
+
+    .active {
+      font-weight: bold;
+      border-bottom: 1px solid ${props => props.theme.palette.secondary.light};
+    }
 
     @media (max-width: 50rem) {
       font-size: 1.5rem;

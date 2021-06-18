@@ -5,7 +5,7 @@ import Header from "../components/Header/header"
 export default function nosotros() {
   return (
     <>
-      <Header />
+      <Header currentMenuPage="Servicios" />
       <div> services page</div>
       <Footer />
     </>

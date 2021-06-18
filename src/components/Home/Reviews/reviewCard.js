@@ -45,6 +45,7 @@ const StyledReviewCard = styled.div`
   flex-basis: 100%;
   padding: 4rem 2.5rem;
   box-shadow: 0px 1px 10px 2px rgb(0 0 0 / 15%);
+  background: white;
   border-radius: 1rem;
   position: relative;
   transition: all 0.3s ease;

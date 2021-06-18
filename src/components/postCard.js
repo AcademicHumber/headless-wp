@@ -85,9 +85,10 @@ export default function PostCard({ post }) {
 }
 
 const StyledPostCard = styled(Card)`
-  min-width: 300px;
   width: 80%;
-  margin: 20px;
+  max-width: 720px;
+  margin: auto;
+  min-height: 70rem;
   display: flex;
   flex-direction: column;
   box-shadow: "2px 8px 24px 1px rgba(0,0,0,0.3)";
@@ -104,7 +105,7 @@ const StyledPostCard = styled(Card)`
     text-decoration: none;
   }
   .gatsby-image-wrapper {
-    max-height: 300px;
+    max-height: 350px;
     background: #ccc;
 
     img {

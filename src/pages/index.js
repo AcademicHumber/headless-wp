@@ -12,6 +12,8 @@ import HomeHeroBg from "../../content/assets/home-hero-background.png"
 import HomeBg from "../../content/assets/home-about-background.png"
 import ReviewsHome from "../components/Home/Reviews/reviewsHome"
 import BlogSliderHome from "../components/Home/Blog/blogSliderHome"
+import { Typography } from "@material-ui/core"
+import { StyledButton } from "../styles/components"
 
 export default function HomePage() {
   const {
@@ -34,6 +36,22 @@ export default function HomePage() {
 
           # Reviews Data
           ...ReviewsSectionData
+
+          # Blog data
+          ...BlogSectionData
+
+          # CTA
+          cta {
+            ctaMessage
+            ctaButton {
+              text
+              uri {
+                ... on WpPage {
+                  uri
+                }
+              }
+            }
+          }
         }
       }
     }
@@ -51,10 +69,26 @@ export default function HomePage() {
 
       <div
         className="shared-background"
-        style={{ background: `url(${HomeBg})` }}
+        style={{
+          background: `url(${HomeBg})`,
+          backgroundRepeat: "no-repeat",
+          backgroundPosition: "center",
+        }}
       >
         <ReviewsHome reviewsData={homePageData.reviews} />
-        <BlogSliderHome />
+        <BlogSliderHome blogData={homePageData.blogHome} />
+      </div>
+      <div className="cta">
+        <Typography variant="h2" color="textPrimary" className="HomeSubtitle">
+          {homePageData.cta.ctaMessage}
+        </Typography>
+        <StyledButton
+          variant="contained"
+          color="primary"
+          href={homePageData.cta.ctaButton.uri.uri}
+        >
+          {homePageData.cta.ctaButton.text}
+        </StyledButton>
       </div>
       <Footer />
     </StyledHomePage>
@@ -70,5 +104,20 @@ const StyledHomePage = styled.main`
     max-width: 0 auto;
     margin: 0 auto;
     text-align: center;
+  }
+
+  .cta {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    gap: 3rem;
+    max-width: 130rem;
+    margin: 0 auto;
+    padding: 8rem 0;
+
+    & a {
+      align-self: center;
+    }
   }
 `

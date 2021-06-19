@@ -54,7 +54,7 @@ const StyledBlogSlider = styled.section.attrs(props => ({
         z-index: 10;
 
         &:before {
-          color: ${props => props.theme.palette.secondary.main};
+          color: #9ca9c4;
           font-size: 4rem;
         }
       }

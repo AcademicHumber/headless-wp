@@ -1,7 +1,7 @@
 import React from "react"
 import { Link, graphql } from "gatsby"
 import Bio from "../components/bio"
-import SEO from "../components/seo"
+import Seo from "../components/seo"
 import Header from "../components/Header/header"
 import Footer from "../components/Footer/footer"
 import { StyledMainContentContainer } from "../styles/components"
@@ -20,7 +20,7 @@ const BlogIndex = ({
     return (
       <>
         <Header>Hola</Header>
-        <SEO title="All posts" />
+        <Seo title="All posts" />
         <Bio />
         <p>
           No blog posts found. Add posts to your WordPress site and they'll
@@ -40,7 +40,7 @@ const BlogIndex = ({
           <Typography variant="caption"> Home - Blog</Typography>
         </section>
       </Header>
-      <SEO title="Todas las publicaciones" />
+      <Seo title="Todas las publicaciones" />
       <StyledMainContentContainer>
         <section className="container">
           {posts.map(post => (

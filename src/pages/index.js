@@ -1,5 +1,5 @@
 import React from "react"
-import SEO from "../components/seo"
+import Seo from "../components/seo"
 import Header from "../components/Header/header"
 import { graphql, useStaticQuery } from "gatsby"
 import HeroHome from "../components/Home/heroHome"
@@ -62,7 +62,7 @@ export default function HomePage() {
       <Header background={HomeHeroBg} currentMenuPage="Inicio">
         <HeroHome heroData={homePageData.heroSection} />
       </Header>
-      <SEO title={homePageData.title} />
+      <Seo title={homePageData.title} />
       <ServiceHome servicesData={homePageData.featuredServicesData} />
 
       <AboutHome aboutData={homePageData.companyData} background={HomeBg} />

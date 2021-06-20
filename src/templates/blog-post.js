@@ -4,7 +4,7 @@ import { GatsbyImage } from "gatsby-plugin-image"
 import parse from "html-react-parser"
 import heroBackground from "../../content/assets/fondo-hero.png"
 import Bio from "../components/bio"
-import SEO from "../components/seo"
+import Seo from "../components/seo"
 import Header from "../components/Header/header"
 import { Typography } from "@material-ui/core"
 import { StyledMainSingleContentContainer } from "../styles/components"
@@ -50,7 +50,7 @@ const BlogPostTemplate = ({ data: { previous, next, post } }) => {
           <Typography variant="caption"> Home → {parse(post.title)}</Typography>
         </section>
       </Header>
-      <SEO title={post.title} description={post.excerpt} />
+      <Seo title={post.title} description={post.excerpt} />
       <StyledMainSingleContentContainer theme={theme}>
         <section className="container">
           <article

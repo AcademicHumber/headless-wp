@@ -37,6 +37,7 @@ export const StyledMainContentContainer = styled.section`
     }
   }
   .blog-post-nav {
+    margin-top: 2rem;
     grid-column: 2/3;
     padding: 1rem 2rem;
     border-top: 1px solid #ccc;

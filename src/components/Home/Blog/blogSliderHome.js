@@ -18,8 +18,8 @@ export default function BlogSliderHome({ blogData }) {
       </Typography>
       <div className="sliderContainer">
         <Slider {...sliderSettings}>
-          {blogData.posts.map(post => (
-            <PostCard key={post.uri} post={post} />
+          {blogData.posts.map((post, index) => (
+            <PostCard key={`${post.uri}-${index}`} post={post} />
           ))}
         </Slider>
       </div>
@@ -63,7 +63,6 @@ const StyledBlogSlider = styled.section.attrs(props => ({
 `
 
 const sliderSettings = {
-  infinite: true,
   autoplay: true,
   arrows: true,
   pauseOnHover: true,

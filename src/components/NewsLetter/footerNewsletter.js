@@ -9,13 +9,14 @@ import { TextField } from "formik-material-ui"
 import AnimatedMount from "../widgets/animatedMount"
 
 export default function FooterNewsletter({ Texts }) {
-  // Manage subscribed states
   const {
     subscribed,
     setSubscribed,
     subscriptionResponse,
     setSubscriptionResponse,
   } = React.useContext(MainContext)
+
+  // Manage subscribed states
 
   if (!subscribed) {
     return (

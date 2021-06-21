@@ -1,4 +1,5 @@
 import React, { createContext, useState } from "react"
+import { useMemo } from "react"
 
 export const MainContext = createContext()
 
@@ -7,15 +8,18 @@ export const MainProvider = ({ children }) => {
   const [subscribed, setSubscribed] = useState(false)
   const [subscriptionResponse, setSubscriptionResponse] = useState("")
 
+  const contextValues = useMemo(
+    () => ({
+      subscribed,
+      setSubscribed,
+      subscriptionResponse,
+      setSubscriptionResponse,
+    }),
+    [subscribed, subscriptionResponse]
+  )
+
   return (
-    <MainContext.Provider
-      value={{
-        subscribed,
-        setSubscribed,
-        subscriptionResponse,
-        setSubscriptionResponse,
-      }}
-    >
+    <MainContext.Provider value={contextValues}>
       {children}
     </MainContext.Provider>
   )

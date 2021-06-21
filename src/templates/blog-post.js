@@ -36,8 +36,6 @@ const BlogPostTemplate = ({ data: { previous, next, post } }) => {
   const postCategories = post.categories.nodes
   const postTags = post.tags.nodes
 
-  console.log(postCategories)
-
   // Get theme
   const theme = useTheme()
   return (

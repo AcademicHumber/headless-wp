@@ -42,9 +42,10 @@ const StyledServiceCard = styled.div.attrs(props => ({
   padding: 2rem;
 
   min-height: 20rem;
-  min-width: 45%;
+  min-width: 80%;
   @media (min-width: 76.8rem) {
-    min-width: 18%;
+    min-width: 20%;
+    max-width: 20%;
   }
 
   // Look and feel

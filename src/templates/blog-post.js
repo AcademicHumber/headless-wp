@@ -39,7 +39,7 @@ const BlogPostTemplate = ({ data: { previous, next, post } }) => {
   // Get theme
   const theme = useTheme()
   return (
-    <>
+    <div key={post.id}>
       <Header background={heroBackground}>
         <section className="hero">
           <Typography variant="h1" color="textPrimary">
@@ -162,7 +162,7 @@ const BlogPostTemplate = ({ data: { previous, next, post } }) => {
       </StyledMainSingleContentContainer>
       <NewsLetter />
       <Footer />
-    </>
+    </div>
   )
 }
 

@@ -36,6 +36,37 @@ export const StyledMainContentContainer = styled.section`
       }
     }
   }
+
+  // This block is used for single service too
+  section.service-container {
+    grid-column: 2/3;
+    display: flex;
+    flex-direction: column;
+
+    .serviceInfo {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-around;
+      padding: 0 2rem;
+
+      .service-content,
+      .gatsby-image-wrapper {
+        margin: 2rem 0;
+      }
+
+      @media (min-width: 76.8rem) {
+        flex-wrap: nowrap;
+        padding: 0;
+
+        .service-content,
+        .gatsby-image-wrapper {
+          flex-basis: 47%;
+        }
+      }
+    }
+  }
+
   .blog-post-nav {
     margin-top: 2rem;
     grid-column: 2/3;
@@ -74,6 +105,7 @@ export const StyledMainSingleContentContainer = styled.section.attrs(props => ({
     .blog-post {
       .post-image {
         margin-bottom: 2rem;
+        display: block;
       }
 
       .post-categories {

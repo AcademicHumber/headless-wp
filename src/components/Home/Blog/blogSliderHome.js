@@ -34,17 +34,27 @@ const StyledBlogSlider = styled.section.attrs(props => ({
   margin: 0 auto;
 
   .sliderContainer {
-    padding: 8rem 0;
+    padding: 4rem 0;
     border-bottom: 1px solid #ccc;
     max-width: 100vw;
+
+    @media (min-width: 76.8rem) {
+      padding: 8rem 0;
+    }
 
     .slick-slider {
       display: flex;
       align-items: center;
       padding: 0 2rem;
+
       // Add padding to prevent cards hidding
       .slick-list {
         padding: 1rem 0;
+        text-align: center;
+
+        @media (min-width: 76.8rem) {         
+          text-align: left;
+        }
       }
       .slick-prev,
       .slick-next {

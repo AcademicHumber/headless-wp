@@ -20,7 +20,7 @@ export default function Cta({
       <Typography variant="body1" color="textSecondary">
         {ctaSubtitle}
       </Typography>
-      <StyledButton variant="contained" color="primary" href={ctaButtonUri}>
+      <StyledButton variant="contained" color="primary" href={ctaButtonUri.uri}>
         {ctaButtonText}
       </StyledButton>
     </StyledCta>

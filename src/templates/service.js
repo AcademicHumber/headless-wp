@@ -24,7 +24,9 @@ export default function Service({ data: { previous, next, service } }) {
     ctaSubtitle:
       "Contactate con nosotros para empezar a llevar un seguimiento a tu caso",
     ctaButtonText: "Contactarse",
-    ctaButtonUri: "/contacto",
+    ctaButtonUri: {
+      uri: "/contacto/",
+    },
   }
 
   return (

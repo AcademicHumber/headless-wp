@@ -52,13 +52,14 @@ const StyledBlogSlider = styled.section.attrs(props => ({
         padding: 1rem 0;
         text-align: center;
 
-        @media (min-width: 76.8rem) {         
+        @media (min-width: 76.8rem) {
           text-align: left;
         }
       }
       .slick-prev,
       .slick-next {
         position: relative;
+        left: -0.2rem;
         width: 4rem;
         height: 4rem;
         z-index: 10;

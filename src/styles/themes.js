@@ -19,7 +19,7 @@ export const lawyersTheme = createMuiTheme({
   typography: {
     htmlFontSize: 10,
     fontSize: 16,
-    fontFamily: "DM Sans, Roboto",
+    fontFamily: "Arial",
     h1: {
       fontSize: "4.2rem",
       fontWeight: "bold",

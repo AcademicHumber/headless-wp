@@ -72,7 +72,7 @@ export const StyledHeader = styled.header.attrs(props => ({
   & .navigation-items {
     // Grid box
     display: grid;
-    grid-template-columns: 1fr 2fr;
+    grid-template-columns: 1fr 2fr 0.5fr;
     max-width: 130rem;
     margin: auto;
     padding: 0;
@@ -83,6 +83,14 @@ export const StyledHeader = styled.header.attrs(props => ({
     }
     .site-logo {
       grid-column: 1 / 2;
+    }
+
+    a.MuiButton-root {
+      align-self: flex-end;
+
+      @media (max-width: 76.8rem) {
+        display: none;
+      }
     }
   }
 
@@ -107,7 +115,9 @@ export const StyledHeader = styled.header.attrs(props => ({
   `}
 `
 
-export const StyledMenu = styled.section`
+export const StyledMenu = styled.section.attrs(props => ({
+  theme: props.theme,
+}))`
   grid-column: 2 / 3;
   display: flex;
   justify-content: space-evenly;
@@ -117,16 +127,16 @@ export const StyledMenu = styled.section`
     align-items: center;
     justify-content: center;
     text-decoration: none;
-    color: black;
+    color: ${props => props.theme.palette.text.primary};
   }
 
   .menu-item {
     display: flex;
     align-items: center;
+    font-weight: bold;
 
     .active {
-      font-weight: bold;
-      border-bottom: 1px solid;
+      color: ${props => props.theme.palette.primary.main};
     }
   }
 

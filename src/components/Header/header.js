@@ -8,6 +8,7 @@ import NavBar from "./navBar"
 import Logo from "../logo"
 import Burger from "./Menu/burger"
 import Menu from "./Menu/menu"
+import { StyledButton } from "../../styles/components"
 
 export default function Header({ children, background }) {
   const {
@@ -44,6 +45,9 @@ export default function Header({ children, background }) {
             </Link>
           </section>
           <NavBar />
+          <StyledButton variant="outlined" color="primary" href="/contacto">
+            Contactarse
+          </StyledButton>
           <aside className="mobile-menu" ref={node}>
             <Burger open={open} setOpen={setOpen} />
             <Menu open={open} setOpen={setOpen} title={title} />

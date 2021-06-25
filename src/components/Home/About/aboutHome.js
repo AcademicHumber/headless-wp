@@ -104,7 +104,7 @@ const StyledAboutSection = styled.section.attrs(props => ({
         .companyData {
           display: grid;
           grid-template-columns: 4rem 1fr;
-          grid-template-rows: 1fr 2fr;
+          grid-template-rows: 4rem minmax(7rem, auto);
           align-items: center;
           padding: 2rem;
           transition: all 0.3s ease;
@@ -151,7 +151,7 @@ const StyledAboutSection = styled.section.attrs(props => ({
       max-width: 100rem;
       margin: 0 auto;
       align-items: center;
-      padding: 5rem 0;
+      padding: 4rem 0;
       text-align: center;
 
       @media (max-width: 76.8rem) {

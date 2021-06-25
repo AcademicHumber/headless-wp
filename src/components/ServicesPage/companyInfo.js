@@ -59,7 +59,7 @@ const StyledCompanyInfo = styled.section`
   align-items: center;
   border-bottom: 1px solid #ccc;
 
-  // Reverse the column on mobile
+  // Column on mobile
   flex-direction: column;
   @media (min-width: 76.8rem) {
     padding: 5rem 0;

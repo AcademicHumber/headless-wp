@@ -3,12 +3,15 @@ import { Link } from "gatsby"
 import { StyledMenu } from "../../styles/styledHeader"
 import MenuChildren from "./menuChildren"
 import { useMenu } from "../../hooks/get-menu"
+import { useTheme } from "@material-ui/styles"
 
 export default function NavBar() {
   const orderedMenu = useMenu()
 
+  const theme = useTheme()
+
   return (
-    <StyledMenu className="desktop-menu">
+    <StyledMenu className="desktop-menu" theme={theme}>
       {orderedMenu.map((menuItem, index) => {
         if (!menuItem.children.length) {
           return (

@@ -29,7 +29,7 @@ export default function Servicios() {
             title
           }
           # First Cta
-          callToAction {
+          firstCta {
             ctaTitle
             ctaSubtitle
             ctaButtonUri {
@@ -87,7 +87,7 @@ export default function Servicios() {
 
       {/* First call to action */}
 
-      <Cta data={servicesPageData.callToAction} />
+      <Cta data={servicesPageData.firstCta} />
 
       {/* Company info section*/}
       <CompanyInfo data={servicesPageData.aboutCompany} />

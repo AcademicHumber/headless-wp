@@ -10,7 +10,7 @@ import styled from "styled-components"
 // Background
 import HomeHeroBg from "../../content/assets/home-hero-background.png"
 import HomeBg from "../../content/assets/home-about-background.png"
-import ReviewsHome from "../components/Home/Reviews/reviewsHome"
+import ReviewsSection from "../components/Home/Reviews/reviewsSection"
 import BlogSliderHome from "../components/Home/Blog/blogSliderHome"
 import SimpleCta from "../components/simpleCta"
 
@@ -74,7 +74,7 @@ export default function HomePage() {
           backgroundPosition: "center",
         }}
       >
-        <ReviewsHome reviewsData={homePageData.reviews} />
+        <ReviewsSection reviewsData={homePageData.reviews} />
         <BlogSliderHome blogData={homePageData.blogHome} />
       </div>
       <SimpleCta

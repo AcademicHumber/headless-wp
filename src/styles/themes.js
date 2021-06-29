@@ -3,6 +3,7 @@ import { createMuiTheme } from "@material-ui/core/styles"
 export const lawyersTheme = createMuiTheme({
   palette: {
     primary: {
+      light: "#f9fafd",
       main: "#3377ff",
       dark: "#2b354f",
     },

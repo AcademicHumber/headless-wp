@@ -21,7 +21,7 @@ const headers = {
 
 const formHandler = async (req, res) => {
   if (req.method !== "POST") {
-    res.json({ message: "Try a POST!" })
+    res.json({ message: "El mensaje tiene que ir en solicitud post" })
   }
 
   // Auth Stuff
@@ -32,11 +32,20 @@ const formHandler = async (req, res) => {
     authParams,
     secretData.gfSecret
   )
-  // Set form data
-  const formData = {
-    form_id: "1",
-    2: req.body.email, // "2" is the id of the text field on GF builder
-  }
+
+  // Set form data, if we have a message, it means is from contact form, if not
+  // it is from subscription form
+  const formData = !req.body.message
+    ? {
+        form_id: "1", // Subscription Form
+        2: req.body.email, // "2" is the id of the text field on GF builder
+      }
+    : {
+        form_id: "2", // Contact Form
+        1: req.body.name, // "1" is the id of the name text field on GF builder
+        2: req.body.email, // "2" is the id of the email text field on GF builder
+        3: req.body.message, // "3" is the id of the message text field on GF builder
+      }
 
   // Send request - references: https://github.com/robmarshall/gatsby-gravityforms-component
   let result
@@ -73,7 +82,15 @@ const formHandler = async (req, res) => {
     }
   }
 
-  return res.status(201).json(`¡Suscripción satisfactoria!`)
+  if (req.body.message) {
+    return res
+      .status(201)
+      .json(
+        `${req.body.name}, gracias  por contactarte con nosotros, revisaremos tu mensaje para ponernos en contacto lo más antes posible.`
+      )
+  } else {
+    return res.status(201).json(`¡Suscripción satisfactoria!`)
+  }
 }
 
 module.exports = formHandler

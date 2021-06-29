@@ -4,7 +4,7 @@ import styled from "styled-components"
 import { Typography } from "@material-ui/core"
 import ReviewCard from "./reviewCard"
 
-export default function ReviewsHome({ reviewsData }) {
+export default function ReviewsSection({ reviewsData }) {
   const { reviews } = reviewsData
 
   return (
@@ -65,6 +65,36 @@ const StyledReviewsSection = styled.section`
 export const reviewsQuery = graphql`
   fragment ReviewsSectionData on WpPage_Homepagedata {
     reviews {
+      reviewsTitle
+      reviewsDescription
+      reviews {
+        ... on WpReview {
+          reviewData {
+            authorName
+            authorCompany
+            authorReview
+            authorImage {
+              altText
+              localFile {
+                childImageSharp {
+                  gatsbyImageData(
+                    quality: 100
+                    placeholder: BLURRED
+                    width: 100
+                  )
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+`
+
+export const contactReviewsQuery = graphql`
+  fragment ContactReviewsSectionData on WpPage_Contactpagedata {
+    reviewsData {
       reviewsTitle
       reviewsDescription
       reviews {

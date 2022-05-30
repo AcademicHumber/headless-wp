@@ -69,6 +69,13 @@ export const StyledHeader = styled.header.attrs(props => ({
     padding-top: 2.5rem;
   }
 
+  /* Manage sticky menu */
+  .menu.sticky {
+    position: sticky;
+    top: 0;
+    left: 0;
+  }
+
   & .navigation-items {
     // Grid box
     display: grid;

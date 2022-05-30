@@ -116,9 +116,15 @@ export default function Footer() {
         &nbsp;
         <Link to="/blog">
           <Typography variant="body2" color="textSecondary">
-            Terminos de privacidad.
+            Terminos de privacidad
           </Typography>
         </Link>
+        &nbsp;&nbsp;
+        <a href="https://crm2.focoazul.com/" target="_blank" rel="noreferrer">
+          <Typography variant="body2" color="textSecondary">
+            Portal del cliente
+          </Typography>
+        </a>
       </section>
     </StyledFooter>
   )

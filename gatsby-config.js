@@ -33,7 +33,7 @@ module.exports = {
         // the only required plugin option for WordPress is the GraphQL url.
         url:
           process.env.WPGRAPHQL_URL ||
-          `https://suscripcion.focoazul.com/graphql`,
+          `https://suscripcion1.focoazul.com/graphql`,
         schema: {
           timeout: 100000,
           requestConcurrency: 50,

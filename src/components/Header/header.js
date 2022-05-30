@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from "react"
+import React, { useState, useRef } from "react"
 import { useOnClickOutside } from "../../hooks/menu-click-outside"
 import parse from "html-react-parser"
 import { StyledHeader } from "../../styles/styledHeader"
@@ -32,27 +32,10 @@ export default function Header({ children, background }) {
   const node = useRef()
   useOnClickOutside(node, () => setOpen(false))
 
-  // Sticky nav bar
-
-  // const [sticky, setSticky] = useState(false)
-  // const navRef = useRef(null)
-  // const handleScroll = () => {
-  //   if (navRef.current) {
-  //     setSticky(navRef.current.getBoundingClientRect().top <= 0)
-  //   }
-  // }
-
-  // useEffect(() => {
-  //   window.addEventListener("scroll", handleScroll)
-  //   return () => {
-  //     window.removeEventListener("scroll", () => handleScroll)
-  //   }
-  // }, [])
-
   return (
     <>
       <StyledHeader background={`url(${background})`}>
-        <div className={`menu ${sticky ? "sticky" : ""}`} ref={navRef}>
+        <div className="menu">
           <Toolbar component="section" className="navigation-items">
             <section className="site-logo">
               <Logo />
